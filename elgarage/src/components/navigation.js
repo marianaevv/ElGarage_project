@@ -9,8 +9,8 @@ function Navigation() {
   return (
 
     
-    <header class="header sticky-top">
-      <NavBar expand="lg" variant="dark" className="navBar ">
+    <header className="header sticky-top">
+      <NavBar expand="lg" variant="dark" className="navBar">
         <NavBar.Toggle aria-controls="basic-navbar-nav" />
         <NavBar.Collapse id="navbarSupportedContent">
           <Nav className="ml-auto ">
