@@ -1,6 +1,6 @@
 import React, { Component } from "react";
+
 import "./Cotizacion.css";
-import "bootstrap/dist/css/bootstrap.min.css";
 
 class Citas extends Component {
   constructor(props) {
@@ -11,7 +11,6 @@ class Citas extends Component {
       value: "hide",
     };
   }
-  
 
   render() {
     return (
@@ -19,7 +18,7 @@ class Citas extends Component {
         <div class="col-md-6 p-0 bg-dark h-md-100">
           <div class="text-white d-md-flex align-items-center h-100 p-5 text-center justify-content-center">
             <div class="logoarea pt-5 pb-5">
-           <h1>CITAS</h1> 
+              <h1>CITAS</h1>
             </div>
           </div>
         </div>
@@ -28,14 +27,14 @@ class Citas extends Component {
           <div class=" align-items-center h-md-100 p-5 justify-content-center">
           <h1 class="mb-0 cotheader">¿Necesita hacer una cita?</h1>
             <form>
-            <div class="form-group">
-              <label for="inputAddress">Nombre Completo</label>
-              <input type="text" class="form-control" id="inputAddress"/>
-            </div>
-            <div class="form-group">
-              <label for="inputAddress">Correo Electrónico</label>
-              <input type="text" class="form-control" id="inputAddress"/>
-            </div>
+              <div class="form-group">
+                <label for="inputAddress">Nombre Completo</label>
+                <input type="text" class="form-control" id="inputAddress"/>
+              </div>
+              <div class="form-group">
+                <label for="inputAddress">Correo Electrónico</label>
+                <input type="text" class="form-control" id="inputAddress"/>
+              </div>
               <div class="form-row">
                 <div class="form-group col-md-6">
                   <label for="inputEmail4">Teléfono</label>
@@ -57,18 +56,18 @@ class Citas extends Component {
                 </div>
               </div>
               <div class="form-group">
-    <label for="exampleFormControlTextarea1">Descripción de Servicio o Falla</label>
-    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-  </div>
+                <label for="exampleFormControlTextarea1">Descripción de Servicio o Falla</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+              </div>
               <div class="form-group row">
-    <div class="col-sm-12 btnCot">
-      <button type="submit" class="btn btn-primary">Agendar cita</button>
-    </div>
-  </div>
+                <div class="col-sm-12 btnCot">
+                  <button type="submit" class="btn btn-primary">Agendar cita</button>
+                </div>
+              </div>
             </form>
            </div>
         </div>
-   </div>
+      </div>
     );
   }
 }
