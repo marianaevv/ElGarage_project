@@ -1,6 +1,6 @@
 import React, { Component } from "react";
+
 import "./Cotizacion.css";
-import "bootstrap/dist/css/bootstrap.min.css";
 
 class Cotizacion extends Component {
   constructor(props) {
@@ -11,7 +11,7 @@ class Cotizacion extends Component {
       value: "hide",
     };
   }
-  
+
 
   render() {
     return (
@@ -19,7 +19,7 @@ class Cotizacion extends Component {
         <div class="col-md-6 p-0 bg-dark h-md-100">
           <div class="text-white d-md-flex align-items-center h-100 p-5 text-center justify-content-center">
             <div class="logoarea pt-5 pb-5">
-           <h1>Cotización</h1> 
+           <h1>Cotización</h1>
             </div>
           </div>
         </div>

@@ -1,5 +1,6 @@
 import React from 'react';
-import './App.css';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+
 import Navigation from './components/Navigation';
 import Inicio from './Inicio';
 import Servicios from './Servicios';
@@ -8,7 +9,10 @@ import Cotizacion from './Cotizacion';
 import Contacto from './Contacto';
 import Nosotros from './Nosotros';
 import Weather from './weather';
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import LoginAdmin from './LoginAdmin'
+
+import "bootstrap/dist/css/bootstrap.min.css";
+import './App.css';
 
 function App() {
   return (
@@ -22,6 +26,7 @@ function App() {
      <Route path="/Cotizacion" component={Cotizacion}/>
      <Route path="/Contacto" component={Contacto}/>
      <Route path="/Nosotros" component={Nosotros}/> 
+     <Route path="/Login" component={LoginAdmin}/> 
      </Switch>
      
     </div>
