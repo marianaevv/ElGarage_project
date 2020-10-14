@@ -15,15 +15,19 @@ import './App.css';
 function App() {
   return (
     <Router>
-      <Navigation/>
-      <Switch>
-        <Route path="/" exact component={Inicio}/>
-        <Route path="/servicios" component={Servicios}/>
-        <Route path="/citas" component={Citas}/>
-        <Route path="/cotizacion" component={Cotizacion}/>
-        <Route path="/contacto" component={Contacto}/>
-        <Route path="/nosotros" component={Nosotros}/>
-      </Switch>
+    <div >
+     <Navigation/>
+     <Switch>
+      <Route path="/" exact component={Inicio}/>
+     <Route path="/Servicios" component={Servicios}/>
+     <Route path="/Citas" component={Citas}/>
+     <Route path="/Cotizacion" component={Cotizacion}/>
+     <Route path="/Contacto" component={Contacto}/>
+     <Route path="/Nosotros" component={Nosotros}/> 
+     <Route path="/Login" component={LoginAdmin}/> 
+     </Switch>
+     
+    </div>
     </Router>
   );
 }
