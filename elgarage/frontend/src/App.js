@@ -7,6 +7,7 @@ import Citas from './Citas';
 import Cotizacion from './Cotizacion';
 import Contacto from './Contacto';
 import Nosotros from './Nosotros';
+import Weather from './weather';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 function App() {
