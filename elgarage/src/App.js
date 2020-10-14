@@ -1,14 +1,16 @@
 import React from 'react';
-import './App.css';
-import Navigation from './components/navigation';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+
+import Navigation from './components/Navigation';
 import Inicio from './Inicio';
 import Servicios from './Servicios';
 import Citas from './Citas';
 import Cotizacion from './Cotizacion';
 import Contacto from './Contacto';
 import Nosotros from './Nosotros';
-import LoginAdmin from './LoginAdmin'
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+
+import "bootstrap/dist/css/bootstrap.min.css";
+import './App.css';
 
 function App() {
   return (
