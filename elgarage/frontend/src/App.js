@@ -1,13 +1,14 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-import Navigation from './components/navigation';
+import Navigation from './components/Navigation';
 import Inicio from './Inicio';
 import Servicios from './Servicios';
 import Citas from './Citas';
 import Cotizacion from './Cotizacion';
 import Contacto from './Contacto';
 import Nosotros from './Nosotros';
+import Weather from './weather';
 import LoginAdmin from './LoginAdmin'
 
 import "bootstrap/dist/css/bootstrap.min.css";

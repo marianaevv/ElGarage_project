@@ -3,7 +3,7 @@ import React from "react";
 import Nav from "react-bootstrap/Nav";
 import NavBar from "react-bootstrap/Navbar";
 
-import "./Navigation.css";
+import "./css/Navigation.css";
 
 function Navigation() {
   return (

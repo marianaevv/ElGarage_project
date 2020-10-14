@@ -6,7 +6,7 @@ import Col from 'react-bootstrap/Col'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import './App.css';
-import './components/Login.css'
+import './components/css/Login.css'
 import { Redirect } from 'react-router-dom';
 function Login() {
   return (
