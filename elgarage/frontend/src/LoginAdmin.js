@@ -9,7 +9,14 @@ import Button from 'react-bootstrap/Button';
 import './App.css';
 import './LoginAdmin.css';
 
-function Login() {
+const Login = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    // Dummy redirect for now
+    window.location.href = '/admin/citas';
+  }
+
   return (
     <div className="login-page">
       <Container fluid>
@@ -21,7 +28,7 @@ function Login() {
         <Row className="justify-content-center">
           <Col lg={5} md={7} className="login-box">
             <h3 className="login-text">Bienvenido, por favor inicie sesión</h3>
-            <Form className="login-form">
+            <Form className="login-form" onSubmit={handleSubmit}>
               <Form.Group controlId="formBasicEmail">
                 <Form.Label><b>Nombre de Usuario</b><span className="login-require"><b>*</b></span></Form.Label>
                 <Form.Control type="email" placeholder="Usuario" />
