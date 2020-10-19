@@ -1,19 +1,93 @@
-import React, { Component } from "react";
+import React, { Component, useReducer } from "react";
 import "./Cotizacion.css";
+import axios from 'axios';
+import URI from "./URI";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-class Citas extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      showLogin: true,
-      showRegister: false,
-      value: "hide",
-    };
-  }
-  
+const initialState = {
+	nombre: '',
+	correo: '',
+	telefono: '',
+	placas: '',
+	fecha: '',
+	hora: '',
+	descripcion: '',
+	error: '',
+};
+function reducer(state, { field, value }) {
+	return {
+		...state,
+		[field]: value,
+	};
+}
+function checkInputs(state) {
+	if (
+		state.nombre !== '' &&
+		state.correo !== '' &&
+		state.telefono !== '' &&
+		state.placas !== '' &&
+		state.fecha !== '' &&
+		state.hora !== '' &&
+		state.descripcion !== ''
+	) {
+		return true;
+	}
+	return false;
+}
+const Citas = (props) => {
+	const [state, dispatch] = useReducer(reducer, initialState);
 
-  render() {
+	const onChange = (e) => {
+		dispatch({ field: e.target.name, value: e.target.value });
+	};
+  const _postAppointmentHandler = (_) => {
+		if (checkInputs(state)) {
+			let {
+				nombre,
+				correo,
+				telefono,
+				placas,
+				fecha,
+				hora,
+				descripcion,
+			} = state;
+			return axios
+				.post(`${URI.base}${URI.routes.postApppointment}`, {
+					nombre,
+					correo,
+					telefono,
+					placas,
+					fecha,
+					hora,
+					descripcion,
+				})
+				.then((response) => {
+					console.log(response);
+					return null;
+				})
+				.catch((error) => {
+					if (error.response) {
+						return error.response.data.message;
+					} else return error.message;
+				});
+		}
+	};
+	const _appointment = async (e) => {
+		e.preventDefault();
+		let respError = await _postAppointmentHandler();
+		if (respError) {
+			dispatch({ field: 'error', value: respError });
+		} else {
+			props.history.push('/');
+		}
+	};
+	const _handleKeyDown = (e) => {
+		if (e.key === 'Enter') {
+			_appointment(e);
+		}
+	};
+
+ 
     return (
       <div class="d-md-flex h-md-100 align-items-center">
         <div class="col-md-6 p-0 bg-dark h-md-100">
@@ -30,39 +104,60 @@ class Citas extends Component {
             <form>
             <div class="form-group">
               <label for="inputAddress">Nombre Completo</label>
-              <input type="text" class="form-control" id="inputAddress"/>
+              <input type="text" class="form-control" id="inputAddress"
+              	onChange={onChange}
+								onKeyDown={_handleKeyDown}
+								name="nombre"/>
             </div>
             <div class="form-group">
               <label for="inputAddress">Correo Electrónico</label>
-              <input type="text" class="form-control" id="inputAddress"/>
+              <input type="email" class="form-control" id="inputAddress"
+              	onChange={onChange}
+								onKeyDown={_handleKeyDown}
+								name="correo"/>
             </div>
               <div class="form-row">
                 <div class="form-group col-md-6">
                   <label for="inputEmail4">Teléfono</label>
-                  <input type="email" class="form-control" id="inputEmail4"/>
+                  <input type="text" class="form-control" id="inputEmail4"
+                  	onChange={onChange}
+                    onKeyDown={_handleKeyDown}
+                    name="telefono"/>
                 </div>
                 <div class="form-group col-md-6">
                   <label for="inputPassword4">Placas</label>
-                  <input type="password" class="form-control" id="inputPassword4"/>
+                  <input type="text" class="form-control" id="inputPassword4"
+                  	onChange={onChange}
+                    onKeyDown={_handleKeyDown}
+                    name="placas"/>
                 </div>
               </div>
               <div class="form-row">
                 <div class="form-group col-md-6">
                   <label for="inputEmail4">Fecha</label>
-                  <input type="email" class="form-control" id="inputEmail4"/>
+                  <input type="date" class="form-control" id="inputEmail4"
+                  	onChange={onChange}
+                    onKeyDown={_handleKeyDown}
+                    name="fecha"/>
                 </div>
                 <div class="form-group col-md-6">
                   <label for="inputPassword4">Hora</label>
-                  <input type="password" class="form-control" id="inputPassword4"/>
+                  <input type="time" class="form-control" id="inputPassword4"
+                  	onChange={onChange}
+                    onKeyDown={_handleKeyDown}
+                    name="hora"/>
                 </div>
               </div>
               <div class="form-group">
     <label for="exampleFormControlTextarea1">Descripción de Servicio o Falla</label>
-    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+    	onChange={onChange}
+      onKeyDown={_handleKeyDown}
+      name="descripcion"></textarea>
   </div>
               <div class="form-group row">
     <div class="col-sm-12 btnCot">
-      <button type="submit" class="btn btn-primary">Agendar cita</button>
+      <button  class="btn btn-primary"onClick={_appointment}>Agendar cita</button>
     </div>
   </div>
             </form>
@@ -71,5 +166,5 @@ class Citas extends Component {
    </div>
     );
   }
-}
+
 export default Citas;
