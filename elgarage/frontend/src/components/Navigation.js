@@ -2,10 +2,25 @@ import React from "react";
 
 import Nav from "react-bootstrap/Nav";
 import NavBar from "react-bootstrap/Navbar";
+import Button from 'react-bootstrap/Button';
 
 import "./css/Navigation.css";
+import {isLoggedIn,LogOut} from './Util/Auth';
 
 function Navigation() {
+  let navItems=[];
+  if(isLoggedIn()){
+    navItems.push(
+        <>
+        <Nav.Link className="NavItem" href="/Dashboard">DASHBOARD</Nav.Link>
+        </>
+    )
+    navItems.push(
+        <span>
+        <Button variant="danger" style={{margin: '10px'}} onClick={LogOut}>Cerrar Sesion</Button>
+        </span>
+    )
+  }
   return (
 
     
@@ -20,6 +35,7 @@ function Navigation() {
             <Nav.Link className="NavItem" href="/cotizacion">COTIZACIÓN</Nav.Link>
             <Nav.Link className="NavItem" href="/contacto">CONTACTO</Nav.Link>
             <Nav.Link className="NavItem" href="/nosotros">NOSOTROS</Nav.Link>
+            {navItems}
           </Nav>
         </NavBar.Collapse>
       </NavBar>
