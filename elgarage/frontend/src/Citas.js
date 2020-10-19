@@ -1,3 +1,4 @@
+
 import React, { Component, useReducer } from "react";
 import "./Cotizacion.css";
 import axios from 'axios';
@@ -93,7 +94,7 @@ const Citas = (props) => {
         <div class="col-md-6 p-0 bg-dark h-md-100">
           <div class="text-white d-md-flex align-items-center h-100 p-5 text-center justify-content-center">
             <div class="logoarea pt-5 pb-5">
-           <h1>CITAS</h1> 
+              <h1>CITAS</h1>
             </div>
           </div>
         </div>
@@ -163,7 +164,7 @@ const Citas = (props) => {
             </form>
            </div>
         </div>
-   </div>
+      </div>
     );
   }
 

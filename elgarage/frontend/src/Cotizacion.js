@@ -266,17 +266,5 @@ const Cotizacion = (props) => {
 	);
 };
 {
-	/* <div class="form-group col-md-6">
-                      <select
-                        class="form-control inputRegistro"
-                        id="inputGenero"
-                        required
-                      >
-                        <option>Género</option>
-                        <option>Femenino</option>
-                        <option>Masculino</option>
-                        <option>Otro</option>
-                      </select>{" "}
-                    </div> */
 }
 export default Cotizacion;
