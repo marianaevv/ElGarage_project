@@ -11,7 +11,10 @@ import CotizacionAdmin from './CotizacionAdmin';
 import Contacto from './Contacto';
 import Nosotros from './Nosotros';
 import Weather from './weather';
-import LoginAdmin from './LoginAdmin'
+import LoginAdmin from './LoginAdmin';
+import PrivateRoute from './components/Util/PrivateRoute';
+
+import {isLoggedIn} from './components/Util/Auth';
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import './App.css';
@@ -31,8 +34,8 @@ function App() {
 
           {/* Admin routes */}
           <Route path="/login" component={LoginAdmin}/>
-          <Route path="/admin/citas" component={CitasAdmin}/>
-          <Route path="/admin/cotizaciones" component={CotizacionAdmin}/>
+          <PrivateRoute path="/admin/citas" component={CitasAdmin}/>
+          <PrivateRoute path="/admin/cotizaciones" component={CotizacionAdmin}/>
         </Switch>
       </div>
     </Router>

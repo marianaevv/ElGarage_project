@@ -9,14 +9,59 @@ import Button from 'react-bootstrap/Button';
 import './App.css';
 import './LoginAdmin.css';
 
+import {isLoggedIn} from './components/Util/Auth';
+
 const Login = () => {
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  if(isLoggedIn()){
+    window.location.href = "/";
+    return(
+        <p></p>
+    );
+}
+function userLoginFetch( email, password ){
+  //cambiar por link final del api de login en el deplyment 
+    let url = 'http://localhost:8000/api/users/login';
 
-    // Dummy redirect for now
-    window.location.href = '/admin/citas';
-  }
+    let data = {
+        email,
+        password
+    }
+    console.log(data)
 
+    let settings = {
+        method : 'POST',
+        headers : {
+            'Content-Type' : 'application/json'
+        },
+        body : JSON.stringify( data )
+    }
+
+    fetch( url, settings )
+        .then( response => {
+            if( response.ok ){
+                return response.json();
+            }
+
+            throw new Error( response.statusText );
+        })
+        .then( responseJSON => {
+            localStorage.setItem( 'token', responseJSON.token );
+            window.location.href = "/admin/citas";
+        })
+        .catch( err => {
+            alert("Something happend,Try again");
+            console.log(err);
+        });
+}
+const handleSubmit = (event) => {
+    const form = event.currentTarget;
+    const email = form.querySelector('#formBasicEmail');
+    const password = form.querySelector('#formBasicPassword');
+    event.preventDefault();
+    event.stopPropagation();
+    
+    userLoginFetch(email.value,password.value);
+  };
   return (
     <div className="login-page">
       <Container fluid>
@@ -38,7 +83,6 @@ const Login = () => {
                 <Form.Label><b>Contraseña</b><span className="login-require"><b>*</b></span></Form.Label>
                 <Form.Control type="password" placeholder="Contraseña" />
               </Form.Group>
-
               <Button variant="primary" type="submit" className="login-button">
                 <b>Iniciar Sesion</b>
               </Button>
