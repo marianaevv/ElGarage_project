@@ -46,7 +46,7 @@ function userLoginFetch( email, password ){
         })
         .then( responseJSON => {
             localStorage.setItem( 'token', responseJSON.token );
-            window.location.href = "/admin/citas";
+            window.location.href = "/admin/dashboard";
         })
         .catch( err => {
             alert("Something happend,Try again");

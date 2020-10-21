@@ -22,7 +22,7 @@
 
 .login-page {
     background-image: linear-gradient(#fff8, transparent), url("./assets/login-background.jpg");
-    height: 800px;
+    height: 900px;
 }
 
 .login-form {

@@ -10,7 +10,6 @@ import Cotizacion from './Cotizacion';
 import CotizacionAdmin from './CotizacionAdmin';
 import Contacto from './Contacto';
 import Nosotros from './Nosotros';
-import Weather from './weather';
 import LoginAdmin from './LoginAdmin';
 import PrivateRoute from './components/Util/PrivateRoute';
 
