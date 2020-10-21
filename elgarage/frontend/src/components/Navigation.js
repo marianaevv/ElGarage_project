@@ -12,7 +12,8 @@ function Navigation() {
   if(isLoggedIn()){
     navItems.push(
         <>
-        <Nav.Link className="NavItem" href="/Dashboard">DASHBOARD</Nav.Link>
+        <Nav.Link className="NavItem" href="/admin/citas">VER CITAS</Nav.Link>
+        <Nav.Link className="NavItem" href="/admin/cotizaciones">VER COTIZACIONES</Nav.Link>
         </>
     )
     navItems.push(

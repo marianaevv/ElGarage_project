@@ -5,7 +5,7 @@ const appointment = require("../controllers/Appointment");
 
 const quote = require("../controllers/Quotes");
 
-router.get("/hello", (req, res) => {
+router.get("/hello", (req, res) => {});
 
 const user = require("../controllers/UsersController");
 const jsonParser = bodyParcer.json();
@@ -34,7 +34,7 @@ router.post( '/api/users/login', jsonParser, async ( req, res ) => {
 });
 router.post('/api/users/signUp', jsonParser, async (req,res) => {
   await user.UserSignUp(req,res);
-})
+});
 //La ruta no existe
 router.get("*", function (req, res) {
   res.status(404).send("La ruta no existe");
