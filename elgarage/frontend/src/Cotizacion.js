@@ -92,7 +92,13 @@ const Cotizacion = (props) => {
 		if (respError) {
 			dispatch({ field: 'error', value: respError });
 		} else {
-			props.history.push('/');
+			if(state.nombre == '' || state.correo == '' || state.telefono == '' || state.placas == '' || state.marcaauto == '' || state.añoauto == '' || state.kilometraje == '' || state.tamañomotor == '' || state.servicio == ''){
+				alert("Todos los campos deben estar completos")
+			}else{
+				alert("Cotización enviada éxitosamente")
+				props.history.push('/');
+			}
+			
 		}
 	};
 	const _handleKeyDown = (e) => {

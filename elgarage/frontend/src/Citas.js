@@ -79,7 +79,14 @@ const Citas = (props) => {
 		if (respError) {
 			dispatch({ field: 'error', value: respError });
 		} else {
-			props.history.push('/');
+			if(state.nombre == '' || state.correo == '' || state.telefono == '' || state.placas == '' || state.fecha == '' || state.hora !== '' || state.descripcion !== ''){
+				alert("Todos los campos deben estar completos")
+			}else{
+				alert("Cita agendada éxitosamente")
+				props.history.push('/');
+			}
+			
+			
 		}
 	};
 	const _handleKeyDown = (e) => {
@@ -108,14 +115,14 @@ const Citas = (props) => {
               <input type="text" class="form-control" id="inputAddress"
               	onChange={onChange}
 								onKeyDown={_handleKeyDown}
-								name="nombre"/>
+								name="nombre" required/>
             </div>
             <div class="form-group">
               <label for="inputAddress">Correo Electrónico</label>
               <input type="email" class="form-control" id="inputAddress"
               	onChange={onChange}
 								onKeyDown={_handleKeyDown}
-								name="correo"/>
+								name="correo" required/>
             </div>
               <div class="form-row">
                 <div class="form-group col-md-6">
@@ -123,14 +130,14 @@ const Citas = (props) => {
                   <input type="text" class="form-control" id="inputEmail4"
                   	onChange={onChange}
                     onKeyDown={_handleKeyDown}
-                    name="telefono"/>
+                    name="telefono" required/>
                 </div>
                 <div class="form-group col-md-6">
                   <label for="inputPassword4">Placas</label>
                   <input type="text" class="form-control" id="inputPassword4"
                   	onChange={onChange}
                     onKeyDown={_handleKeyDown}
-                    name="placas"/>
+                    name="placas"required/>
                 </div>
               </div>
               <div class="form-row">
@@ -139,14 +146,14 @@ const Citas = (props) => {
                   <input type="date" class="form-control" id="inputEmail4"
                   	onChange={onChange}
                     onKeyDown={_handleKeyDown}
-                    name="fecha"/>
+                    name="fecha" required/>
                 </div>
                 <div class="form-group col-md-6">
                   <label for="inputPassword4">Hora</label>
                   <input type="time" class="form-control" id="inputPassword4"
                   	onChange={onChange}
                     onKeyDown={_handleKeyDown}
-                    name="hora"/>
+                    name="hora"required/>
                 </div>
               </div>
               <div class="form-group">
@@ -154,7 +161,7 @@ const Citas = (props) => {
     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
     	onChange={onChange}
       onKeyDown={_handleKeyDown}
-      name="descripcion"></textarea>
+      name="descripcion"required></textarea>
   </div>
               <div class="form-group row">
     <div class="col-sm-12 btnCot">
