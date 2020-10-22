@@ -34,74 +34,74 @@ const Cotizacion = ({ history }) => {
 	const onError = (errors) => console.error(errors);
 
 	return (
-		<div class="d-md-flex h-md-100 align-items-center">
-			<div class="col-md-6 p-0 bg-dark h-md-100">
-				<div class="text-white d-md-flex align-items-center h-100 p-5 text-center justify-content-center">
-					<div class="logoarea pt-5 pb-5">
+		<div className="d-md-flex h-md-100 align-items-center">
+			<div className="col-md-6 p-0 bg-dark h-md-100">
+				<div className="text-white d-md-flex align-items-center h-100 p-5 text-center justify-content-center">
+					<div className="logoarea pt-5 pb-5">
 						<h1>Cotización</h1>
 					</div>
 				</div>
 			</div>
 
-			<div class="col-md-6 p-0 bg-white h-md-100 ">
-				<div class=" align-items-center h-md-100 p-5 justify-content-center">
-					<h1 class="mb-0 cotheader">¿Necesita una cotización?</h1>
+			<div className="col-md-6 p-0 bg-white h-md-100 ">
+				<div className=" align-items-center h-md-100 p-5 justify-content-center">
+					<h1 className="mb-0 cotheader">¿Necesita una cotización?</h1>
 					<form onSubmit={handleSubmit(onSubmit, onError)} noValidate>
-						<div class="form-group">
+						<div className="form-group">
 							<label for="inputName">Nombre Completo</label>
-							<input name="nombre" ref={register({ required: 'Esto es obligatorio' })} type="text" class="form-control" id="inputName"/>
+							<input name="nombre" ref={register({ required: 'Esto es obligatorio' })} type="text" className="form-control" id="inputName"/>
 							<ErrorMessage errors={errors} name="nombre" render={({ message }) => <p className="text-danger">{message}</p>}/>
 						</div>
-						<div class="form-group">
+						<div className="form-group">
 							<label for="inputEmail">Correo Electrónico</label>
-							<input name="correo" ref={register({ required: 'Esto es obligatorio', pattern: { value: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/, message: 'Correo inválido' } })} type="text" class="form-control" id="inputEmail"/>
+							<input name="correo" ref={register({ required: 'Esto es obligatorio', pattern: { value: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/, message: 'Correo inválido' } })} type="text" className="form-control" id="inputEmail"/>
 							<ErrorMessage errors={errors} name="correo" render={({ message }) => <p className="text-danger">{message}</p>}/>
 						</div>
-						<div class="form-row">
-							<div class="form-group col-md-6">
+						<div className="form-row">
+							<div className="form-group col-md-6">
 								<label for="inputPhone">Teléfono</label>
-								<input name="telefono" ref={register({ required: 'Esto es obligatorio', pattern: { value: /[0-9]{10,}/, message: 'Numero inválido' } })} type="text" class="form-control" id="inputPhone"/>
+								<input name="telefono" ref={register({ required: 'Esto es obligatorio', pattern: { value: /[0-9]{10,}/, message: 'Numero inválido' } })} type="text" className="form-control" id="inputPhone"/>
 								<ErrorMessage errors={errors} name="telefono" render={({ message }) => <p className="text-danger">{message}</p>}/>
 							</div>
-							<div class="form-group col-md-6">
+							<div className="form-group col-md-6">
 								<label for="inputPlate">Placas</label>
-								<input name="placas" ref={register({ required: 'Esto es obligatorio' })} type="text" class="form-control" id="inputPlate"/>
+								<input name="placas" ref={register({ required: 'Esto es obligatorio' })} type="text" className="form-control" id="inputPlate"/>
 								<ErrorMessage errors={errors} name="placas" render={({ message }) => <p className="text-danger">{message}</p>}/>
 							</div>
 						</div>
-						<div class="form-row">
-							<div class="form-group col-md-6">
+						<div className="form-row">
+							<div className="form-group col-md-6">
 								<label for="inputCarBrand">Marca del auto</label>
-								<input name="marcaauto" ref={register({ required: 'Esto es obligatorio' })} type="text" class="form-control" id="inputCarBrand"/>
+								<input name="marcaauto" ref={register({ required: 'Esto es obligatorio' })} type="text" className="form-control" id="inputCarBrand"/>
 								<ErrorMessage errors={errors} name="marcaauto" render={({ message }) => <p className="text-danger">{message}</p>}/>
 							</div>
-							<div class="form-group col-md-6">
+							<div className="form-group col-md-6">
 								<label for="inputYearBrand">Año del auto</label>
-								<input name="añoauto" ref={register({ required: 'Esto es obligatorio', pattern: { value: /[0-9]{4}/, message: 'Año inválido' }})} type="number" class="form-control" id="inputYearBrand"/>
+								<input name="añoauto" ref={register({ required: 'Esto es obligatorio', pattern: { value: /[0-9]{4}/, message: 'Año inválido' }})} type="number" className="form-control" id="inputYearBrand"/>
 								<ErrorMessage errors={errors} name="añoauto" render={({ message }) => <p className="text-danger">{message}</p>}/>
 							</div>
 						</div>
-						<div class="form-row">
-							<div class="form-group col-md-6">
+						<div className="form-row">
+							<div className="form-group col-md-6">
 								<label for="inputKm">Kilometraje</label>
 								<div className="input-group">
-									<input name="kilometraje" ref={register({ required: 'Esto es obligatorio' })} type="number" class="form-control" id="inputKm"/>
+									<input name="kilometraje" ref={register({ required: 'Esto es obligatorio' })} type="number" className="form-control" id="inputKm"/>
 									<div className="input-group-append">
-										<span class="input-group-text">km</span>
+										<span className="input-group-text">km</span>
 									</div>
 								</div>
 								<ErrorMessage errors={errors} name="kilometraje" render={({ message }) => <p className="text-danger">{message}</p>}/>
 							</div>
-							<div class="form-group col-md-6">
+							<div className="form-group col-md-6">
 								<label for="inputMotorSize">Tamaño del motor</label>
-								<input name="tamañomotor" ref={register({ required: 'Esto es obligatorio' })} type="text" class="form-control" id="inputMotorSize"/>
+								<input name="tamañomotor" ref={register({ required: 'Esto es obligatorio' })} type="text" className="form-control" id="inputMotorSize"/>
 								<ErrorMessage errors={errors} name="tamañomotor" render={({ message }) => <p className="text-danger">{message}</p>}/>
 							</div>
 						</div>
-						<div class="form-row">
-							<div class="form-group col-md-6">
+						<div className="form-row">
+							<div className="form-group col-md-6">
 								<label for="inputService">Servicio</label>
-								<select name="servicio" ref={register({ required: 'Esto es obligatorio' })} class="form-control" id="inputService">
+								<select name="servicio" ref={register({ required: 'Esto es obligatorio' })} className="form-control" id="inputService">
 									<option value="" selected disabled hidden>Escoge...</option>
 									<option>ABS</option>
 									<option>Bombas de agua</option>
@@ -125,15 +125,15 @@ const Cotizacion = ({ history }) => {
 								</select>
 								<ErrorMessage errors={errors} name="servicio" render={({ message }) => <p className="text-danger">{message}</p>}/>
 							</div>
-							<div class="form-group col-md-6">
+							<div className="form-group col-md-6">
 								<label for="inputOther">Otro</label>
-								<input name="otro" ref={register({ validate: value => value !== '' || 'Esto es obligatorio' })} type="text" class="form-control" id="inputOther"/>
+								<input name="otro" ref={register({ validate: value => value !== '' || 'Esto es obligatorio' })} type="text" className="form-control" id="inputOther"/>
 								<ErrorMessage errors={errors} name="otro" render={({ message }) => <p className="text-danger">{message}</p>}/>
 							</div>
 						</div>
-						<div class="form-group row">
-							<div class="col-sm-12 btnCot">
-								<button class="btn btn-primary" type='submit'>Enviar cotización</button>
+						<div className="form-group row">
+							<div className="col-sm-12 btnCot">
+								<button className="btn btn-primary" type='submit'>Enviar cotización</button>
 							</div>
 						</div>
 					</form>
