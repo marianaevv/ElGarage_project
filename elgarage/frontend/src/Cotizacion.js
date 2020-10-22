@@ -85,7 +85,7 @@ const Cotizacion = ({ history }) => {
 							<div className="form-group col-md-6">
 								<label for="inputKm">Kilometraje</label>
 								<div className="input-group">
-									<input name="kilometraje" ref={register({ required: 'Esto es obligatorio' })} type="number" className="form-control" id="inputKm"/>
+									<input name="kilometraje" ref={register({ required: 'Esto es obligatorio', validate: value => (!isNaN(value) && Number(value) >= 0) || 'Numero inválido' })} type="number" className="form-control" id="inputKm"/>
 									<div className="input-group-append">
 										<span className="input-group-text">km</span>
 									</div>
@@ -127,8 +127,7 @@ const Cotizacion = ({ history }) => {
 							</div>
 							<div className="form-group col-md-6">
 								<label for="inputOther">Otro</label>
-								<input name="otro" ref={register({ validate: value => value !== '' || 'Esto es obligatorio' })} type="text" className="form-control" id="inputOther"/>
-								<ErrorMessage errors={errors} name="otro" render={({ message }) => <p className="text-danger">{message}</p>}/>
+								<input name="otro" ref={register} type="text" className="form-control" id="inputOther"/>
 							</div>
 						</div>
 						<div className="form-group row">
