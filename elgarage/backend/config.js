@@ -1,4 +1,4 @@
-module.exports.connectionURL = process.env.CONNECTION_URL || "mongodb+srv://admin:adminelgarchis@elgarage.haqhd.mongodb.net/elgarage?retryWrites=true&w=majority"
+module.exports.CONNECTION_URL = process.env.CONNECTION_URL || "mongodb+srv://admin:adminelgarchis@elgarage.haqhd.mongodb.net/elgarage?retryWrites=true&w=majority"
 module.exports.SECRET = process.env.SECRET || "secretsecret";
 
 //Auth token
