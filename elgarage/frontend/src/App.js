@@ -33,8 +33,8 @@ function App() {
 
           {/* Admin routes */}
           <Route path="/login" component={LoginAdmin}/>
-          <PrivateRoute path="/admin/citas" component={CitasAdmin} authed={isLoggedIn()}/>
-          <PrivateRoute path="/admin/cotizaciones" component={CotizacionAdmin} authed={isLoggedIn()}/>
+          <Route path="/admin/citas" component={CitasAdmin} authed={isLoggedIn()}/>
+          <Route path="/admin/cotizaciones" component={CotizacionAdmin} authed={isLoggedIn()}/>
         </Switch>
       </div>
     </Router>

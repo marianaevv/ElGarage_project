@@ -44,11 +44,11 @@ router.get("/api/citas", async (req, res) => {
 router.post("/api/citas", async (req, res) => {
   await appointment.newAppointment(req, res);
 });
-router.get("/cotizaciones", async (req, res) => {
+router.get("/api/cotizaciones", async (req, res) => {
   await quote.getAllQuotes(req, res);
 });
 
-router.post("/cotizacion", async (req, res) => {
+router.post("/api/cotizacion", async (req, res) => {
   await quote.newQuote(req, res);
 });
 
