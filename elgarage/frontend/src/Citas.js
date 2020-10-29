@@ -28,6 +28,7 @@ const Citas = ({ history }) => {
 		return axios
 			.post(`${URI.base}${URI.routes.postApppointment}`, { ...data })
 			.then(resp => {
+
 				toast.warning('Cita agendada éxitosamente', {
 					position: "top-right",
 					autoClose: 5000,
@@ -47,7 +48,6 @@ const Citas = ({ history }) => {
 
 	return (
 		<div className="d-md-flex h-md-100 align-items-center">
-			
 			<div className="col-md-6 p-0 leftside h-md-100">
 				<div className="text-white d-md-flex align-items-center h-100 p-5 text-center justify-content-center">
 					<div className="logoarea pt-5 pb-5">
@@ -57,9 +57,9 @@ const Citas = ({ history }) => {
 			</div>
 
 			<div className="col-md-6 p-0 bg-white h-md-100 ">
-				
 				<div className=" align-items-center h-md-100 p-5 justify-content-center">
 				<ToastContainer draggable={false} autoClose={4000} />
+
 					<h1 className="mb-0 cotheader">¿Necesita hacer una cita?</h1>
 					<form onSubmit={handleSubmit(onSubmit, onError)} noValidate>
 						<div className="form-group">

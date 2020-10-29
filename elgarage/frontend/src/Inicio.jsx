@@ -2,8 +2,6 @@ import React from 'react';
 import Container from 'react-bootstrap/Container';
 
 import './Inicio.css';
-//import redCarImg from './assets/carroRojo.png';
-//import whiteCarImg from './assets/carroB.png';
 import logo from './assets/Logo.png';
 
 const Inicio = () => (
@@ -11,7 +9,6 @@ const Inicio = () => (
    
     <img src={logo} alt='Red car' className=''/>
     
-  
   </Container>
 );
 
