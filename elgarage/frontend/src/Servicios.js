@@ -21,7 +21,7 @@ function Servicios() {
         <div class="row text-center">
           <div class="col-xl-4 col-sm-6 mb-5">
             <div class="bg-white rounded shadow-sm py-5 px-4">
-              <Image src={BombasAgua} className="imgServicio" rounded />
+              <Image src={BombasAgua} className="imgServicio" roundedCircle />
               <h5 class="mb-0">Bombas de agua</h5>
             </div>
           </div>

@@ -10,7 +10,6 @@ import Cotizacion from './Cotizacion';
 import CotizacionAdmin from './CotizacionAdmin';
 import Contacto from './Contacto';
 import Nosotros from './Nosotros';
-import Weather from './weather';
 import LoginAdmin from './LoginAdmin';
 import PrivateRoute from './components/Util/PrivateRoute';
 
@@ -34,8 +33,8 @@ function App() {
 
           {/* Admin routes */}
           <Route path="/login" component={LoginAdmin}/>
-          <PrivateRoute path="/admin/citas" component={CitasAdmin} authed={isLoggedIn()}/>
-          <PrivateRoute path="/admin/cotizaciones" component={CotizacionAdmin} authed={isLoggedIn()}/>
+          <Route path="/admin/citas" component={CitasAdmin} authed={isLoggedIn()}/>
+          <Route path="/admin/cotizaciones" component={CotizacionAdmin} authed={isLoggedIn()}/>
         </Switch>
       </div>
     </Router>

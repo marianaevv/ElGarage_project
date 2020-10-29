@@ -4,7 +4,6 @@ const morgan = require("morgan");
 const app = express();
 const cors = require( './middleware/cors' );
 require("./db/mongoose");
-const cors = require("./middleware/cors");
 const bodyParser = require("body-parser");
 const router = require("./routes/routes");
 app.use(cors);

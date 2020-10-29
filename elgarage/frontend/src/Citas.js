@@ -1,171 +1,116 @@
 
-import React, { Component, useReducer } from "react";
-import "./Cotizacion.css";
+import React from "react";
+import { useForm } from 'react-hook-form';
+import { ErrorMessage } from '@hookform/error-message';
+import moment from 'moment';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
+
 import URI from "./URI";
-import "bootstrap/dist/css/bootstrap.min.css";
+import "./Cotizacion.css";
 
-const initialState = {
-	nombre: '',
-	correo: '',
-	telefono: '',
-	placas: '',
-	fecha: '',
-	hora: '',
-	descripcion: '',
-	error: '',
-};
-function reducer(state, { field, value }) {
-	return {
-		...state,
-		[field]: value,
-	};
-}
-function checkInputs(state) {
-	if (
-		state.nombre !== '' &&
-		state.correo !== '' &&
-		state.telefono !== '' &&
-		state.placas !== '' &&
-		state.fecha !== '' &&
-		state.hora !== '' &&
-		state.descripcion !== ''
-	) {
-		return true;
+const Citas = ({ history }) => {
+	const { register, errors, getValues, handleSubmit } = useForm({
+		defaultValues: {
+			nombre: '',
+			correo: '',
+			telefono: '',
+			placas: '',
+			fecha: '',
+			hora: '',
+			descripcion: ''
+		}
+	});
+
+	const onSubmit = (data) => {
+		console.log(data);
+		return axios
+			.post(`${URI.base}${URI.routes.postApppointment}`, { ...data })
+			.then(resp => {
+				toast.warning('Cita agendada éxitosamente', {
+					position: "top-right",
+					autoClose: 5000,
+					hideProgressBar: false,
+					closeOnClick: true,
+					pauseOnHover: true,
+					draggable: true,
+				
+					});
+				console.log(resp);
+				//history.push('/');
+			})
+			.catch(err => err.response ? err.response.data.message : err.message);
 	}
-	return false;
+
+	const onError = (errors) => console.error(errors);
+
+	return (
+		<div className="d-md-flex h-md-100 align-items-center">
+			
+			<div className="col-md-6 p-0 leftside h-md-100">
+				<div className="text-white d-md-flex align-items-center h-100 p-5 text-center justify-content-center">
+					<div className="logoarea pt-5 pb-5">
+						<h1>CITAS</h1>
+					</div>
+				</div>
+			</div>
+
+			<div className="col-md-6 p-0 bg-white h-md-100 ">
+				
+				<div className=" align-items-center h-md-100 p-5 justify-content-center">
+				<ToastContainer draggable={false} autoClose={4000} />
+					<h1 className="mb-0 cotheader">¿Necesita hacer una cita?</h1>
+					<form onSubmit={handleSubmit(onSubmit, onError)} noValidate>
+						<div className="form-group">
+							<label htmlFor="inputName">Nombre Completo</label>
+							<input name="nombre" ref={register({ required: "Esto es obligatorio" })} className="form-control" id="inputName"/>
+							<ErrorMessage errors={errors} name="nombre" render={({ message }) => <p className='text-danger'>{message}</p>}/>
+						</div>
+						<div className="form-group">
+							<label htmlFor="inputEmail">Correo Electrónico</label>
+							<input name="correo" ref={register({ required: "Esto es obligatorio", pattern: { value: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/, message: 'Correo inválido' }})} type="email" className="form-control" id="inputEmail"/>
+							<ErrorMessage errors={errors} name="correo" render={({ message }) => <p className='text-danger'>{message}</p>}/>
+						</div>
+						<div className="form-row">
+							<div className="form-group col-md-6">
+								<label htmlFor="inputPhone">Teléfono</label>
+								<input name="telefono" ref={register({ required: "Esto es obligatorio", pattern: { value: /[0-9]{10,}/, message: 'Numero inválido' }})} type="text" className="form-control" id="inputPhone"/>
+								<ErrorMessage errors={errors} name="telefono" render={({ message }) => <p className='text-danger'>{message}</p>}/>
+							</div>
+							<div className="form-group col-md-6">
+								<label htmlFor="inputPlate">Placas</label>
+								<input name="placas" ref={register({ required: "Esto es obligatorio" })} type="text" className="form-control" id="inputPlate"/>
+								<ErrorMessage errors={errors} name="placas" render={({ message }) => <p className='text-danger'>{message}</p>}/>
+							</div>
+						</div>
+						<div className="form-row">
+							<div className="form-group col-md-6">
+								<label htmlFor="inputDate">Fecha</label>
+								<input name="fecha" ref={register({ required: "Esto es obligatorio", validate: value => moment(value).isSameOrAfter(moment(), 'day') || 'Fecha inválido' })} type="date" className="form-control" id="inputDate"/>
+								<ErrorMessage errors={errors} name="fecha" render={({ message }) => <p className='text-danger'>{message}</p>}/>
+							</div>
+							<div className="form-group col-md-6">
+								<label htmlFor="inputTime">Hora</label>
+								<input name="hora" ref={register({ required: "Esto es obligatorio" , validate: value => moment(`${getValues('fecha')} ${value}`).isSameOrAfter(moment()) || 'Fecha inválido' })} type="time" className="form-control" id="inputTime"/>
+								<ErrorMessage errors={errors} name="hora" render={({ message }) => <p className='text-danger'>{message}</p>}/>
+							</div>
+						</div>
+						<div className="form-group">
+							<label htmlFor="inputDescription">Descripción de Servicio o Falla</label>
+							<textarea name="descripcion" ref={register({ required: "Esto es obligatorio" })} className="form-control" id="inputDescription" rows="3"></textarea>
+							<ErrorMessage errors={errors} name="descripcion" render={({ message }) => <p className='text-danger'>{message}</p>}/>
+						</div>
+						<div className="form-group row">
+							<div className="col-sm-12 btnCot">
+								<button className="btn btn-primary" type='submit'>Agendar cita</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	)
 }
-const Citas = (props) => {
-	const [state, dispatch] = useReducer(reducer, initialState);
-
-	const onChange = (e) => {
-		dispatch({ field: e.target.name, value: e.target.value });
-	};
-  const _postAppointmentHandler = (_) => {
-		if (checkInputs(state)) {
-			let {
-				nombre,
-				correo,
-				telefono,
-				placas,
-				fecha,
-				hora,
-				descripcion,
-			} = state;
-			return axios
-				.post(`${URI.base}${URI.routes.postApppointment}`, {
-					nombre,
-					correo,
-					telefono,
-					placas,
-					fecha,
-					hora,
-					descripcion,
-				})
-				.then((response) => {
-					console.log(response);
-					return null;
-				})
-				.catch((error) => {
-					if (error.response) {
-						return error.response.data.message;
-					} else return error.message;
-				});
-		}
-	};
-	const _appointment = async (e) => {
-		e.preventDefault();
-		let respError = await _postAppointmentHandler();
-		if (respError) {
-			dispatch({ field: 'error', value: respError });
-		} else {
-			props.history.push('/');
-		}
-	};
-	const _handleKeyDown = (e) => {
-		if (e.key === 'Enter') {
-			_appointment(e);
-		}
-	};
-
- 
-    return (
-      <div class="d-md-flex h-md-100 align-items-center">
-        <div class="col-md-6 p-0 bg-dark h-md-100">
-          <div class="text-white d-md-flex align-items-center h-100 p-5 text-center justify-content-center">
-            <div class="logoarea pt-5 pb-5">
-              <h1>CITAS</h1>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-6 p-0 bg-white h-md-100 ">
-          <div class=" align-items-center h-md-100 p-5 justify-content-center">
-          <h1 class="mb-0 cotheader">¿Necesita hacer una cita?</h1>
-            <form>
-            <div class="form-group">
-              <label for="inputAddress">Nombre Completo</label>
-              <input type="text" class="form-control" id="inputAddress"
-              	onChange={onChange}
-								onKeyDown={_handleKeyDown}
-								name="nombre"/>
-            </div>
-            <div class="form-group">
-              <label for="inputAddress">Correo Electrónico</label>
-              <input type="email" class="form-control" id="inputAddress"
-              	onChange={onChange}
-								onKeyDown={_handleKeyDown}
-								name="correo"/>
-            </div>
-              <div class="form-row">
-                <div class="form-group col-md-6">
-                  <label for="inputEmail4">Teléfono</label>
-                  <input type="text" class="form-control" id="inputEmail4"
-                  	onChange={onChange}
-                    onKeyDown={_handleKeyDown}
-                    name="telefono"/>
-                </div>
-                <div class="form-group col-md-6">
-                  <label for="inputPassword4">Placas</label>
-                  <input type="text" class="form-control" id="inputPassword4"
-                  	onChange={onChange}
-                    onKeyDown={_handleKeyDown}
-                    name="placas"/>
-                </div>
-              </div>
-              <div class="form-row">
-                <div class="form-group col-md-6">
-                  <label for="inputEmail4">Fecha</label>
-                  <input type="date" class="form-control" id="inputEmail4"
-                  	onChange={onChange}
-                    onKeyDown={_handleKeyDown}
-                    name="fecha"/>
-                </div>
-                <div class="form-group col-md-6">
-                  <label for="inputPassword4">Hora</label>
-                  <input type="time" class="form-control" id="inputPassword4"
-                  	onChange={onChange}
-                    onKeyDown={_handleKeyDown}
-                    name="hora"/>
-                </div>
-              </div>
-              <div class="form-group">
-    <label for="exampleFormControlTextarea1">Descripción de Servicio o Falla</label>
-    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
-    	onChange={onChange}
-      onKeyDown={_handleKeyDown}
-      name="descripcion"></textarea>
-  </div>
-              <div class="form-group row">
-    <div class="col-sm-12 btnCot">
-      <button  class="btn btn-primary"onClick={_appointment}>Agendar cita</button>
-    </div>
-  </div>
-            </form>
-           </div>
-        </div>
-      </div>
-    );
-  }
 
 export default Citas;
