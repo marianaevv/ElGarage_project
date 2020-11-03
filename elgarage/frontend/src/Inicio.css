@@ -1,9 +1,8 @@
 
-img {
-  position: absolute;
+.logoCot {
+  position: relative;
   width: 100%;
-  max-width: 700px;
-  max-height: 38%;
+  max-height: 150%;
   object-fit: contain;
 }
 
