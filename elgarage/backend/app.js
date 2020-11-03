@@ -1,7 +1,6 @@
 const express = require("express");
 const favicon = require('express-favicon');
 const path = require('path');
-const mongoose = require("mongoose");
 const morgan = require("morgan");
 const app = express();
 const cors = require( './middleware/cors' );
