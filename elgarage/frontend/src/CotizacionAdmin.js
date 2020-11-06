@@ -5,6 +5,7 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import './CotizacionesAdmin.css';
+import logo from './assets/Logo.png';
 import Container from 'react-bootstrap/esm/Container';
 import Table from 'react-bootstrap/Table';
 function App() {
@@ -29,7 +30,8 @@ function App() {
 			<Container fluid style={{ marginTop: 20 }}>
 				<Row>
 					<Col md={4}>
-						<h1 className="display-4 font-weight-bold titulo-dashboard">EL GARAGE</h1>
+					<img src={logo} alt='Red car'className="logoCot"/>
+					
 					</Col>
 					<Col md={{ span: 4, offset: 4 }}>
 						<h1 className="display-4 font-weight-bold cotizaciones-dashboard">COTIZACIONES</h1>
