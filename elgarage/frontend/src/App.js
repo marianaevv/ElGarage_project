@@ -11,6 +11,7 @@ import CotizacionAdmin from './CotizacionAdmin';
 import Contacto from './Contacto';
 import Nosotros from './Nosotros';
 import LoginAdmin from './LoginAdmin';
+import Sucess from './components/Sucess';
 import PrivateRoute from './components/Util/PrivateRoute';
 
 import {isLoggedIn} from './components/Util/Auth';
@@ -30,7 +31,7 @@ function App() {
           <Route path="/Cotizacion" component={Cotizacion}/>
           <Route path="/Contacto" component={Contacto}/>
           <Route path="/Nosotros" component={Nosotros}/>
-
+          <Route path="/Success" component={Sucess}/>
           {/* Admin routes */}
           <Route path="/login" component={LoginAdmin}/>
           <Route path="/admin/citas" component={CitasAdmin} authed={isLoggedIn()}/>

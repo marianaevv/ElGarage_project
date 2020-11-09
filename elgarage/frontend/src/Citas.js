@@ -1,4 +1,79 @@
-import React, { useState } from 'react';
+import React, { Component } from 'react';
+import FormCalendar from './components/FormCalendar';
+import FormSlots from './components/FormSlots';
+import Confirm from './components/Confirm';
+import Sucess from './components/Sucess';
+import './citas.css';
+import FormUserInfo from './components/FormUserInfo';
+
+export class Citas extends Component {
+	constructor() {
+		super();
+this.state = {
+		step: 1,
+		fecha: null,
+		slotID: '',
+		hora: '',
+		nombre: '',
+		correo:'',
+		telefono: '',
+		placas: '',
+		descripcion: '',
+	};
+
+	this.selectedTime = this.selectedTime.bind(this);
+	}
+	
+
+	//Process to next step
+	nextStep = () => {
+		const { step } = this.state;
+		this.setState({
+			step: step + 1,
+		});
+	};
+
+	//Go back to previous to next step
+	prevStep = () => {
+		const { step } = this.state;
+		this.setState({
+			step: step - 1,
+		});
+	};
+
+	//Handle fields change
+	handleChange = (input) => (e) => {
+		this.setState({ [input]: e.target.value });
+	};
+	selectedTime(i) {
+		this.setState({ hora: i.hora, slotID:i.id})
+	
+	  }
+
+	render() {
+		const { step } = this.state;
+		const { fecha, hora, slotID, nombre, correo, telefono, placas, descripcion } = this.state;
+		const values = { fecha, hora,slotID, nombre, correo, telefono, placas, descripcion };
+	
+		switch (step) {
+			case 1:
+				return <FormCalendar nextStep={this.nextStep} handleChange={this.handleChange} values={values} />;
+			case 2:
+				return (
+					<FormSlots selectedTime={this.selectedTime} nextStep={this.nextStep} prevStep={this.prevStep} handleChange={this.handleChange} values={values}/>
+				);
+			case 3:
+				return <FormUserInfo nextStep={this.nextStep} prevStep={this.prevStep} handleChange={this.handleChange} values={values} />;
+			case 4:
+				return <Confirm nextStep={this.nextStep} prevStep={this.prevStep} values={values} />;
+			case 5:
+				return <Sucess/>
+		}
+	}
+};
+export default Citas;
+
+/*import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { ErrorMessage } from '@hookform/error-message';
 import moment from 'moment';
@@ -6,21 +81,13 @@ import Calendar from 'react-calendar';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
-
+import Loader from './components/Loader';
 import URI from './URI';
 import './Cotizacion.css';
 
 const Citas = ({ history }) => {
 	const [date, setDate] = useState(new Date());
-	const [slotSelection, setSlot] = useState(null);
-	let data = ["9:00 am", "11:00 am", "2:00 pm", "4:00 pm", "6:00 pm" ];
-	const onChange = (date, slot) => {
-		setDate(date);
-		//setSlot(slot);
-	};
-	const onChangeSlot = (slotSelection) => {
-		setSlot(slotSelection);
-	};
+	const [slots, setSlot] = useState(null);
 	const { register, errors, getValues, handleSubmit } = useForm({
 		defaultValues: {
 			nombre: '',
@@ -32,6 +99,8 @@ const Citas = ({ history }) => {
 			descripcion: '',
 		},
 	});
+
+
 
 	const onSubmit = (data) => {
 		console.log(data);
@@ -52,9 +121,27 @@ const Citas = ({ history }) => {
 			.catch((err) => (err.response ? err.response.data.message : err.message));
 	};
 
+	useEffect(() => {
+		const fetchSlots = async () => {
+			const { data } = await axios.get(`http://localhost:8000/api/slotsPorDia/${date}`);
+			const { slots, paginas } = data;
+			console.log(slots);
+			// const quotesChunks = splitQuotes(projects);
+			setSlot(slots);
+		};
+
+		fetchSlots();
+	}, []);
+
+	const onChange = (date, slot) => {
+		setDate(date);
+		//setSlot(slot);
+	};
 	const onError = (errors) => console.error(errors);
 
-	return (
+	return !slots ? (
+		<Loader/>
+		):(
 		<div className="d-md-flex h-md-100 align-items-center">
 			<div className="col-md-6 p-0 leftside h-md-100">
 				<div className="text-white d-md-flex align-items-center h-100 p-5 text-center justify-content-center">
@@ -63,11 +150,11 @@ const Citas = ({ history }) => {
 						<div className="divCalendar">
 							<Calendar onChange={onChange} value={date} className="calendar" />
 						</div>
-						{data.map((slot) => (
+						{slots.map((slot) => (
 							<li 
 							key={slot} 
-						/*onClick=/*{this.selectedTime.bind(this, el)}*/>
-							<a href="#" onChange={onChangeSlot} value={slotSelection}> {slot}</a>
+						/*onClick=/*{this.selectedTime.bind(this, el)}>*/
+/*		<a href="#" value=""> {slot.hora}</a>
 						  </li>
 						))}
 					</div>
@@ -155,7 +242,7 @@ const Citas = ({ history }) => {
 								<label htmlFor="inputPlate">Fecha</label>
 								<input
 									name="fecha"
-									value={date.toLocaleDateString()}
+									value={date.toLocaleDateString}
 									ref={register({ required: 'Esto es obligatorio' })}
 									type="text"
 									className="form-control"
@@ -173,7 +260,7 @@ const Citas = ({ history }) => {
 								<label htmlFor="inputTime">Hora</label>
 								<input
 									name="hora"
-									value={slotSelection}
+									value=""
 									ref={register({ required: 'Esto es obligatorio' })}
 									type="text"
 									className="form-control"
@@ -216,7 +303,7 @@ const Citas = ({ history }) => {
 	);
 };
 
-export default Citas;
+export default Citas;*/
 
 /*import React, { useState } from 'react';
 import Calendar from 'react-calendar';
@@ -286,6 +373,4 @@ const Citas = ({ history }) => {
 			</Form>
 		</div>
 	);
-};
-
-export default Citas;*/
+};*/
