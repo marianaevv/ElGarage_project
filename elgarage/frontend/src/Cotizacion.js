@@ -3,7 +3,6 @@ import { useForm } from 'react-hook-form';
 import { ErrorMessage } from '@hookform/error-message';
 import { ToastContainer, toast } from 'react-toastify';
 import axios from 'axios';
-
 import URI from './URI';
 import './Cotizacion.css';
 
@@ -37,7 +36,7 @@ const Cotizacion = ({ history }) => {
 					draggable: true,
 				
 					});
-				
+
 			})
 			.catch(err => err.response ? err.response.data.message : err.message);
 	}
@@ -147,6 +146,7 @@ const Cotizacion = ({ history }) => {
 							<ErrorMessage errors={errors} name="descripcion" render={({ message }) => <p className='text-danger'>{message}</p>}/>
 						</div>
 						</div>
+
 						<div className="form-group row">
 							<div className="col-sm-12 btnCot">
 								<button className="btn btn-primary" type='submit'>Enviar cotización</button>
@@ -160,3 +160,4 @@ const Cotizacion = ({ history }) => {
 };
 
 export default Cotizacion;
+

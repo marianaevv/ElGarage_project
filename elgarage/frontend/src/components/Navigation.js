@@ -3,7 +3,7 @@ import React from "react";
 import Nav from "react-bootstrap/Nav";
 import NavBar from "react-bootstrap/Navbar";
 import Button from 'react-bootstrap/Button';
-
+import logo from '../assets/Logo.png';
 import "./css/Navigation.css";
 import {isLoggedIn,LogOut} from './Util/Auth';
 
@@ -12,7 +12,8 @@ function Navigation() {
   if(isLoggedIn()){
     navItems.push(
         <>
-        <Nav.Link className="NavItem" href="/Dashboard">DASHBOARD</Nav.Link>
+        <Nav.Link className="NavItem" href="/admin/citas">VER CITAS</Nav.Link>
+        <Nav.Link className="NavItem" href="/admin/cotizaciones">VER COTIZACIONES</Nav.Link>
         </>
     )
     navItems.push(
@@ -25,10 +26,13 @@ function Navigation() {
 
     
     <header className="header sticky-top">
+      
       <NavBar expand="lg" variant="dark" className="navBar">
         <NavBar.Toggle aria-controls="basic-navbar-nav" />
         <NavBar.Collapse id="navbarSupportedContent">
+        <img src={logo} alt='Red car' width="130" height="65"/>
           <Nav className="ml-auto">
+          
             <Nav.Link className="NavItem" href="/">INICIO</Nav.Link>
             <Nav.Link className="NavItem" href="/servicios">SERVICIOS</Nav.Link>
             <Nav.Link className="NavItem" href="/citas">CITAS</Nav.Link>

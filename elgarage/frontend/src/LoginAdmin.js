@@ -20,7 +20,7 @@ const Login = () => {
 }
 function userLoginFetch( email, password ){
   //cambiar por link final del api de login en el deplyment 
-    let url = 'http://localhost:8000/api/users/login';
+    let url = '/api/users/login';
 
     let data = {
         email,

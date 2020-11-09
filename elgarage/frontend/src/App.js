@@ -21,6 +21,7 @@ import './App.css';
 
 function App() {
   return (
+    <div>
     <Router>
       <div >
         <Navigation/>
@@ -39,6 +40,8 @@ function App() {
         </Switch>
       </div>
     </Router>
+    
+  </div>
   );
 }
 

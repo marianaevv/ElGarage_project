@@ -1,0 +1,18 @@
+.jumbo{
+    background-image: linear-gradient(#fff8, transparent), url("./assets/about.jpg");
+    
+   
+    
+}
+.jumbo-text{
+
+    color:white;
+}
+.nosotros-text{
+    text-align: justify;
+    margin-top: 50px;
+}
+.nosotros-img{
+    position: relative;
+
+}
