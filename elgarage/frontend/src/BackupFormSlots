@@ -1,0 +1,82 @@
+import React, { Component } from 'react';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import AppBar from 'material-ui/AppBar';
+import TextField from 'material-ui/TextField';
+import RaisedButton from 'material-ui/RaisedButton';
+import Loader from '../components/Loader'
+export class FormSlots extends Component {
+    constructor(props) {
+		super(props);
+		
+		this.state = {
+			data: [],
+		};
+	}
+	continue = (e) => {
+		e.preventDefault();
+		this.props.nextStep();
+    };
+    back = (e) => {
+		e.preventDefault();
+		this.props.prevStep();
+    };
+    
+    componentDidMount() {
+        const apiUrl = `http://localhost:8000/api/slotsPorDia/${this.props.values.fecha}`;
+        //const {data} = await axios.get(apiUrl);
+        fetch(apiUrl)
+          .then((response) => response.json())
+          .then(data => this.setState({ data:data }),
+             );
+      }
+      /*fetchUsers() {
+        // Where we're fetching data from
+        fetch(`http://localhost:8000/api/slotsPorDia/${this.props.values.fecha}`)
+          // We get the API response and receive data in JSON format...
+          .then(response => response.json())
+          // ...then we update the users state
+          .then(data =>
+              this.setState({
+              slots: data,
+  
+            })
+          )
+          // Catch any errors we hit and update the app
+          .catch(error => console.log(error));
+      }*/
+	render() {
+        const { values, handleChange } = this.props;
+       
+        //const slot =this.state.data;
+         console.log(this.state.data.slots)
+      //  const listItems = slot.slots.map((d) => <li key={d.hora}></li>);
+        return !this.state.data ? (
+            <Loader/>
+            ):(
+                <MuiThemeProvider>
+                    <React.Fragment>
+                        <AppBar title="Enter INFO" />
+            
+           
+          <RaisedButton
+                label="Back"
+               primary ={false}
+                style={styles.button}
+                onClick={this.back}
+                />
+                    </React.Fragment>
+                </MuiThemeProvider>
+            );
+	}
+}
+
+
+
+const styles = {
+    button:{
+        
+        margin: 15,
+        
+    }
+}
+export default FormSlots;

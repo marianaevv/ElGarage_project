@@ -3,7 +3,7 @@ const bodyParcer = require('body-parser');
 const path = require('path');
 const router = express.Router();
 const appointment = require("../controllers/Appointment");
-
+const slot = require("../controllers/Slot");
 const quote = require("../controllers/Quotes");
 
 router.get('/', function (req, res) {
@@ -51,6 +51,18 @@ router.get("/api/cotizaciones", async (req, res) => {
 router.post("/api/cotizacion", async (req, res) => {
   await quote.newQuote(req, res);
 });
+router.get("/api/slots", async (req, res) => {
+  await slot.getAllSlots(req, res);
+});
+router.post("/api/newSlot", async (req, res) => {
+  await slot.newSlot(req, res);
+});
+router.get("/api/slotsPorDia/:dia", async (req, res) => {
+  await slot.getSlotByDay(req.params.dia, res);
+});
+router.delete("/api/deleteSlot/:id", async (req, res)=>{
+    await slot.deleteSlotByDayHour(req.params.id, res);
+})
 
 //Rutas de autenticacion
 router.post( '/api/users/login', jsonParser, async ( req, res ) => {
