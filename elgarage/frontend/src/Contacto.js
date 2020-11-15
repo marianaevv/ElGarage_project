@@ -19,7 +19,32 @@ const Contacto = () => {
     }
   });
 
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    let url = '/api/contacto';
+
+    let settings = {
+        method : 'POST',
+        headers : {
+            'Content-Type' : 'application/json'
+        },
+        body : JSON.stringify( data )
+    }
+
+    fetch( url, settings )
+    .then( response => {
+        if( response.ok ){
+          alert("Se envio con exito!!!")
+          document.getElementById("form").reset()
+        }
+        else{
+          throw new Error( response.statusText );
+        }
+    })
+    .catch( err => {
+        alert("Something happend,Try again");
+        console.log(err);
+    });
+  };
   const onError = (errors) => console.error(errors);
 
   return (
@@ -42,7 +67,7 @@ const Contacto = () => {
                 Tel.6251513775
               </p>
               <h2>Envianos un Mensaje</h2>
-              <Form className="contacto-form" onSubmit={handleSubmit(onSubmit, onError)} noValidate>
+              <Form className="contacto-form" id="form" onSubmit={handleSubmit(onSubmit, onError)} noValidate>
                 <Form.Group>
                   <Form.Label controlId="nameForm"><b>Nombre</b></Form.Label>
                   <Form.Control name="nombre" ref={register({ required: 'Esto es obligatorio' })} type="text" placeholder="Nombre" />
