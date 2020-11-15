@@ -5,6 +5,7 @@ const router = express.Router();
 const appointment = require("../controllers/Appointment");
 const slot = require("../controllers/Slot");
 const quote = require("../controllers/Quotes");
+const contacto = require('../controllers/Contacto')
 
 router.get('/', function (req, res) {
     res.sendFile(path.join(__dirname, '../build', 'index.html'));
@@ -63,6 +64,9 @@ router.get("/api/slotsPorDia/:dia", async (req, res) => {
 router.delete("/api/deleteSlot/:id", async (req, res)=>{
     await slot.deleteSlotByDayHour(req.params.id, res);
 })
+router.post("/api/contacto",async (req,res)=>{
+  await contacto.sendMail(req,res)
+})
 
 //Rutas de autenticacion
 router.post( '/api/users/login', jsonParser, async ( req, res ) => {
@@ -73,7 +77,7 @@ router.post('/api/users/signUp', jsonParser, async (req,res) => {
 });
 //La ruta no existe
 router.get("*", function (req, res) {
-  res.status(404).send("La ruta no existe");
+  res.sendFile(path.join(__dirname, '../build', 'index.html'));
 });
 
 
