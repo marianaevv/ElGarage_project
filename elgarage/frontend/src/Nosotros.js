@@ -19,8 +19,9 @@ function App() {
           </div>
           </Col>
           <Col>
-            <h3 >Nuestros Valores </h3>
-              <ul style={{marginBottom : 50}}>
+            
+              <ul className="listaNosotros" style={{marginBottom : 50}}>
+              <li><h3 className="valores"> Nuestros Valores</h3></li>
                 <li><h4>Honestidad.</h4></li>
                 <li><h4>Confianza.</h4></li>
                 <li><h4>Calidad.</h4></li>
@@ -28,7 +29,7 @@ function App() {
                 <li><h4>Respeto.</h4></li>
                 <li><h4>Servicio.</h4></li>
               </ul>
-             <Image className="nosotros-img" src={logo} fluid rounded />
+             <Image className="nosotros-img logoNosotros" src={logo} fluid rounded />
           </Col>
         </Row>
       </Container>

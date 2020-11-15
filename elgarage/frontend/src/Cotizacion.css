@@ -12,7 +12,12 @@ justify-content:center;
 .leftside{
   background-color:#111 !important;
 }
-
+form>div>label{
+  color:black;
+}
+form>div>div>label{
+  color:black;
+}
 .form-inline {
     display: flex;
     flex-flow: row wrap;

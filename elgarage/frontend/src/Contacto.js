@@ -69,26 +69,29 @@ const Contacto = () => {
               <h2>Envianos un Mensaje</h2>
               <Form className="contacto-form" id="form" onSubmit={handleSubmit(onSubmit, onError)} noValidate>
                 <Form.Group>
-                  <Form.Label controlId="nameForm"><b>Nombre</b></Form.Label>
+                  <Form.Label className="contactoLabel" controlId="nameForm"><b>Nombre</b></Form.Label>
                   <Form.Control name="nombre" ref={register({ required: 'Esto es obligatorio' })} type="text" placeholder="Nombre" />
                   <ErrorMessage errors={errors} name="nombre" render={({ message }) => <p className='text-danger'>{message}</p>}/>
                 </Form.Group>
                 <Form.Group controlId="emailForm">
-                  <Form.Label><b>Email</b></Form.Label>
-                  <Form.Control name="correo" ref={register({ required: "Esto es obligatorio", pattern: { value: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/, message: 'Correo inválido' }})} type="email" placeholder="name@example.com" />
+                  <Form.Label className="contactoLabel"><b>Email</b></Form.Label>
+                  <Form.Control name="correo" ref={register({ required: "Esto es obligatorio", pattern: { value: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/, message: 'Correo inválido' }})} type="email" placeholder="nombre@ejemplo.com" />
                   <ErrorMessage errors={errors} name="correo" render={({ message }) => <p className='text-danger'>{message}</p>}/>
                 </Form.Group>
                 <Form.Group controlId="asuntoForm">
-                  <Form.Label><b>Asunto</b></Form.Label>
+                  <Form.Label className="contactoLabel"><b>Asunto</b></Form.Label>
                   <Form.Control name="asunto" ref={register({ required: 'Esto es obligatorio' })} type="text" placeholder="Asunto" />
                   <ErrorMessage errors={errors} name="asunto" render={({ message }) => <p className='text-danger'>{message}</p>}/>
                 </Form.Group>
                 <Form.Group controlId="mensajeForm">
-                  <Form.Label><b>Mensaje</b></Form.Label>
+                  <Form.Label className="contactoLabel"><b>Mensaje</b></Form.Label>
                   <Form.Control name="mensaje" ref={register({ required: 'Esto es obligatorio' })} as="textarea" rows={3} />
                   <ErrorMessage errors={errors} name="mensaje" render={({ message }) => <p className='text-danger'>{message}</p>}/>
                 </Form.Group>
-                <Button variant="secondary" type="submit">Enviar</Button>
+                <div className="btnContacto">
+                 <Button  variant="secondary" type="submit">Enviar</Button> 
+                </div>
+                
               </Form>
             </div>
           </Col>

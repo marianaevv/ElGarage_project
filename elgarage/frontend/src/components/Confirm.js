@@ -128,10 +128,11 @@ const Confirm = (props, {history}) => {
 		e.preventDefault();
 		let respError = await _postAppointmentHandler();
 		if (respError) {
-			console.log(respError);
+			console.log("NOTCOOL",respError);
 		
 		} else {
-			//toast.success('Registro éxitoso!');
+			console.log("cool")
+			return props.history.push('/Success');
 			//props.history.push('/', {sucess: "Registro éxitoso"});
 		}
 	};
@@ -143,7 +144,7 @@ const Confirm = (props, {history}) => {
 				.post(`http://localhost:8000/api/citas`, {nombre,correo,telefono,placas,fecha,hora,descripcion})
 				.then((response) => {
 					return axios.delete(`http://localhost:8000/api/deleteSlot/${props.values.slotID}`)
-				})
+			})
 				.catch((error) => {
 
 				});
@@ -165,7 +166,7 @@ const Confirm = (props, {history}) => {
 					<Form >
 						<Form.Group controlId="formBasicEmail">
 							<Form.Label>Nombre</Form.Label>
-							<Form.Control type="text" name="nombre" value={props.values.nombre}/>
+							<Form.Control required type="text" name="nombre" value={props.values.nombre}/>
 						</Form.Group>
 						<Form.Group controlId="formBasicEmail">
 							<Form.Label>Correo</Form.Label>

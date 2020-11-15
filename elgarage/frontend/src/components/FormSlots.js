@@ -79,7 +79,7 @@ class FormSlots extends React.Component {
 									);
 								})
 							) : (
-								<h3>Loading...</h3>
+								<h3>Cargando...</h3>
 							)}
 							<Form.Group controlId="formBasicEmail">
 								<Form.Label className="labelSelectedSlot">HORARIO SELECCIONADO</Form.Label>

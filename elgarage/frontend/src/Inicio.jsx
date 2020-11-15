@@ -1,7 +1,7 @@
 import React from 'react';
 import {Container,Jumbotron,Row,Col} from 'react-bootstrap';
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-import { Carousel } from 'react-responsive-carousel';
+//import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+//import { Carousel } from 'react-responsive-carousel';
  
 import './Inicio.css';
 import './Cotizacion.css'
@@ -19,7 +19,7 @@ const Inicio = () => (
       
       </Container>
     </Jumbotron>
-    <Carousel showThumbs={false} infiniteLoop={true} autoPlay={true} showStatus={false}>
+    {/*<Carousel showThumbs={false} infiniteLoop={true} autoPlay={true} showStatus={false}>
           <div>
           <a href="/servicios"  >
               <div>
@@ -41,7 +41,7 @@ const Inicio = () => (
               </div>
           </a>
           </div>
-    </Carousel> 
+</Carousel> */}
     <div className="d-md-flex  leftside align-items-center ">
       <div className="col-md-6 p-0 h-md-100 leftside bg-white">
           <div className="text-black d-md-flex align-items-center h-md-100 p-5 text-center justify-content-center">

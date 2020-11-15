@@ -3,6 +3,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import AppBar from 'material-ui/AppBar';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
+
 import { Form, Button } from 'react-bootstrap';
 export class FormUserInfo extends Component {
 	continue = (e) => {
@@ -35,27 +36,27 @@ export class FormUserInfo extends Component {
 						<Form.Group controlId="formBasicEmail">
 							<Form.Label>Nombre</Form.Label>
 							<Form.Control type="text" name="nombre" onChange={handleChange('nombre')}
-                        defaultValue={values.nombre}/>
+                        defaultValue={values.nombre} required/>
 						</Form.Group>
 						<Form.Group controlId="formBasicEmail">
 							<Form.Label>Correo</Form.Label>
 							<Form.Control type="text" name="correo" onChange={handleChange('correo')}
-                        defaultValue={values.correo}/>
+                        defaultValue={values.correo} required/>
 						</Form.Group>
 						<Form.Group controlId="formBasicEmail">
 							<Form.Label>Teléfono</Form.Label>
 							<Form.Control type="text" name="telefono" onChange={handleChange('telefono')}
-                        defaultValue={values.telefono}/>
+                        defaultValue={values.telefono}required/>
 						</Form.Group>
 						<Form.Group controlId="formBasicEmail">
 							<Form.Label>Placas</Form.Label>
 							<Form.Control type="text" name="placas" onChange={handleChange('placas')}
-                        defaultValue={values.placas}/>
+                        defaultValue={values.placas} required/>
 						</Form.Group>
 						<Form.Group controlId="formBasicEmail">
 							<Form.Label>Descripción</Form.Label>
 							<Form.Control type="text" name="descripcion" onChange={handleChange('descripcion')}
-                        defaultValue={values.descripcion}/>
+                        defaultValue={values.descripcion} required/>
 						</Form.Group>
 						
 					</Form>

@@ -15,3 +15,12 @@
     width: 200px !important;
     height: 200px  !important;
   }
+  .serv{
+      color:black;
+  }
+.titleServicios{
+    margin-top:30px;
+    color:rgb(22, 117, 224);
+    text-align:center;
+    font-weight: bold;
+}

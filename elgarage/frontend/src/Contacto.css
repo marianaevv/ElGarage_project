@@ -24,3 +24,12 @@
     width:100%;
     position:absolute;
 }
+.contactoLabel{
+    color:black;
+}
+.btnContacto{
+    text-align: center;
+}
+.btnContacto>Button{
+    background-color:black;
+}
