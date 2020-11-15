@@ -12,6 +12,7 @@ import Contacto from './Contacto';
 import Nosotros from './Nosotros';
 import LoginAdmin from './LoginAdmin';
 import Sucess from './components/Sucess';
+import Page404 from './Page404'
 import PrivateRoute from './components/Util/PrivateRoute';
 
 import {isLoggedIn} from './components/Util/Auth';
@@ -35,8 +36,9 @@ function App() {
           <Route path="/Success" component={Sucess}/>
           {/* Admin routes */}
           <Route path="/login" component={LoginAdmin}/>
-          <Route path="/admin/citas" component={CitasAdmin} authed={isLoggedIn()}/>
-          <Route path="/admin/cotizaciones" component={CotizacionAdmin} authed={isLoggedIn()}/>
+          <PrivateRoute path="/admin/citas" component={CitasAdmin} authed={isLoggedIn()}/>
+          <PrivateRoute path="/admin/cotizaciones" component={CotizacionAdmin} authed={isLoggedIn()}/>
+          <Route component={Page404}/>
         </Switch>
       </div>
     </Router>
