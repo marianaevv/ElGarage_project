@@ -13,7 +13,7 @@ function App() {
 
 	useEffect(() => {
 		const fetchQuotes = async () => {
-			const { data } = await axios('http://localhost:8000/api/cotizaciones');
+			const { data } = await axios('/api/cotizaciones');
 			const { quotes, paginas } = data;
 			// const quotesChunks = splitQuotes(projects);
 			console.log(data);

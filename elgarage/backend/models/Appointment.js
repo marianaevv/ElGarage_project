@@ -36,6 +36,10 @@ const appointmentSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  confirm:{
+    type: Boolean,
+    default: false
+  }
 }, {
   timestamps: true
 });

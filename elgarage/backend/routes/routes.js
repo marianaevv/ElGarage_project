@@ -45,6 +45,9 @@ router.get("/api/citas", async (req, res) => {
 router.post("/api/citas", async (req, res) => {
   await appointment.newAppointment(req, res);
 });
+router.post("/api/citas/confirmar", async (req,res) =>{
+  await appointment.confirmAppointment(req,res);
+});
 router.get("/api/cotizaciones", async (req, res) => {
   await quote.getAllQuotes(req, res);
 });

@@ -26,7 +26,6 @@ function userLoginFetch( email, password ){
         email,
         password
     }
-    console.log(data)
 
     let settings = {
         method : 'POST',

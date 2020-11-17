@@ -4,6 +4,7 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Loader from './components/Loader';
+import Button from 'react-bootstrap/Button'
 import './CitasAdmin.css';
 
 import Container from 'react-bootstrap/esm/Container';
@@ -13,7 +14,7 @@ function App() {
 
 	useEffect(() => {
 		const fetchAppointments = async () => {
-			const { data } = await axios.get('http://localhost:8000/api/citas');
+			const { data } = await axios.get('/api/citas');
 			const { citas, paginas } = data;
 			// const quotesChunks = splitQuotes(projects);
 			setAppointments(citas);
@@ -21,6 +22,44 @@ function App() {
 
 		fetchAppointments();
 	}, []);
+	const confirmarCita = (appointment) =>{
+		let url = '/api/citas/confirmar';
+
+    let data = {
+        id : appointment.id,
+		nombre : appointment.nombre,
+		correo : appointment.correo,
+		telefono : appointment.telefono,
+		placas : appointment.placas,
+		fecha : appointment.fecha,
+		hora : appointment.hora,
+		descripcion : appointment.descripcion
+    }
+
+    let settings = {
+        method : 'POST',
+        headers : {
+            'Content-Type' : 'application/json'
+        },
+        body : JSON.stringify( data )
+    }
+
+    fetch( url, settings )
+        .then( response => {
+            if( response.ok ){
+				alert("se confirmo la cita y se le informo al cliente")
+				window.location.reload()
+			}
+			else{
+
+				throw new Error( response.statusText );
+			}
+        })
+        .catch( err => {
+            alert("Something happend,Try again");
+            console.log(err);
+        });
+	}
 
 	return !citas ? (
 		<Loader />
@@ -60,6 +99,7 @@ function App() {
 							<th className="th">Fecha</th>
 							<th className="th">Hora</th>
 							<th className="th">Descripción de la falla o servicio</th>
+							<th className="th">Confirmado</th>
 						</tr>
 						{citas.map((appointment) => (
 							<tr>
@@ -70,6 +110,7 @@ function App() {
 								<th>{appointment.fecha}</th>
 								<th>{appointment.hora}</th>
 								<th>{appointment.descripcion}</th>
+								<th>{appointment.confirm ? <Button variant="secondary" disabled>Confirmada</Button> :<Button variant="success" onClick={() => confirmarCita(appointment)}>Confirmar</Button> }</th>
 							</tr>
 						))}
 					</thead>
