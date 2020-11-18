@@ -24,3 +24,12 @@
 .active{
     color: rgb(71, 179, 230) !important;
 }
+@media only screen and (max-width: 991px) {
+    .nav-mobil{
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+    }
+    
+}
+

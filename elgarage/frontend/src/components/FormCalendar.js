@@ -14,8 +14,19 @@ export default class FormCalendar extends React.Component {
 		};
 	}
 	continue = (e) => {
-		e.preventDefault();
-		this.props.nextStep();
+		let val = document.getElementById('example-date-input').value
+		var today = new Date();
+		var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+		if (val == ''){
+			alert("Porfavor,selecione una fecha valida")
+		}
+		else if(val < date){
+			alert("Porfavor,selecione una fecha que sea en el futuro")
+		}
+		else{
+			e.preventDefault();
+			this.props.nextStep();
+		}
 	};
 	handleDayClick(day, { selected }) {
 		this.setState({

@@ -30,7 +30,9 @@ function Navigation() {
       <NavBar expand="lg" variant="dark" className="navBar">
         <NavBar.Toggle aria-controls="basic-navbar-nav" />
         <NavBar.Collapse id="navbarSupportedContent">
-        <img src={logo} alt='Red car' width="130" height="65"/>
+          <div className="div-imagen">
+            <img src={logo} alt='Red car' width="130" height="65" className="nav-mobil"/>
+          </div>
           <Nav className="ml-auto">
           
             <Nav.Link className="NavItem" href="/">INICIO</Nav.Link>

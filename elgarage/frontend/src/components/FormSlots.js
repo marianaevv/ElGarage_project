@@ -13,9 +13,15 @@ class FormSlots extends React.Component {
 		error: null,
 	};
 	continue = (e) => {
-		e.preventDefault();
-		//PROCESS FORM
-		this.props.nextStep();
+		let val = document.getElementById('hora').value
+		if(val == ''){
+			alert("selecione una hora para su cita")
+		}
+		else{
+			e.preventDefault();
+			//PROCESS FORM
+			this.props.nextStep();
+		}
 	};
 	back = (e) => {
 		e.preventDefault();
@@ -23,7 +29,7 @@ class FormSlots extends React.Component {
 	};
 	fetchSlots() {
 		// Where we're fetching data from
-		fetch(`http://localhost:8000/api/slotsPorDia/${this.props.values.fecha}`)
+		fetch(`/api/slotsPorDia/${this.props.values.fecha}`)
 			// We get the API response and receive data in JSON format...
 			.then((response) => response.json())
 			// ...then we update the users state
@@ -88,6 +94,7 @@ class FormSlots extends React.Component {
                   name="hora"
 									onChange={handleChange('hora')}
 									defaultValue={values.hora}
+									id = "hora"
 									disabled
 								/>
 							</Form.Group>
