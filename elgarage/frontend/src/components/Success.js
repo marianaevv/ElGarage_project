@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import AppBar from 'material-ui/AppBar';
 
-export class Sucess extends Component {
+export class Success extends Component {
 	render() {
 		return (
 			<MuiThemeProvider>
@@ -15,4 +15,4 @@ export class Sucess extends Component {
 	}
 }
 
-export default Sucess;
+export default Success;

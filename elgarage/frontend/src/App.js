@@ -11,7 +11,7 @@ import CotizacionAdmin from './CotizacionAdmin';
 import Contacto from './Contacto';
 import Nosotros from './Nosotros';
 import LoginAdmin from './LoginAdmin';
-import Sucess from './components/Sucess';
+import Sucess from './components/Success';
 import Page404 from './Page404'
 import PrivateRoute from './components/Util/PrivateRoute';
 
@@ -24,7 +24,7 @@ function App() {
   return (
     <div>
     <Router>
-      <div >
+      <div>
         <Navigation/>
         <Switch>
           <Route path="/" exact component={Inicio}/>

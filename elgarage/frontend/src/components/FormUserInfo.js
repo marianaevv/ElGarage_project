@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import AppBar from 'material-ui/AppBar';
-import TextField from 'material-ui/TextField';
-import RaisedButton from 'material-ui/RaisedButton';
 
-import { Form, Button } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
 export class FormUserInfo extends Component {
     constructor(props){
         super(props);
@@ -51,7 +48,7 @@ export class FormUserInfo extends Component {
 							<Form.Label>Nombre</Form.Label>
 							<Form.Control type="text" name="nombre" onChange={handleChange('nombre')}
                         defaultValue={values.nombre} required/>
-                            
+
 						</Form.Group>
 						<Form.Group controlId="formBasicEmail" >
 							<Form.Label>Correo</Form.Label>
@@ -73,7 +70,7 @@ export class FormUserInfo extends Component {
 							<Form.Control type="text" name="descripcion" onChange={handleChange('descripcion')}
                         defaultValue={values.descripcion} required/>
 						</Form.Group>
-						
+
 					</Form>
 {     /*                   <TextField
                         hintText="Nombre Completo"
@@ -133,9 +130,9 @@ export class FormUserInfo extends Component {
 
 const styles = {
     button:{
-        
+
         margin: 15,
-        
+
     }
 }
 export default FormUserInfo;
