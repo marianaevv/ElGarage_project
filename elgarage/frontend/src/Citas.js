@@ -92,6 +92,7 @@ export class Citas extends Component {
 				return (
 					<Success/>
 				)
+			default: break;
 		}
 	}
 };

@@ -9,8 +9,8 @@ class FormSlots extends React.Component {
 
 	continue = (e) => {
 		let val = document.getElementById('hora').value
-		if (val == ''){
-			alert("selecione una hora para su cita")
+		if (val === ''){
+			alert("selecione una hora para su cita");
 		} else {
 			e.preventDefault();
 			//PROCESS FORM
@@ -66,7 +66,7 @@ class FormSlots extends React.Component {
 							{error ? <p>{error.message}</p> : null}
 							{!isLoading ? (
 								avSlots.map((slot) => {
-									const { id, dia, hora } = slot;
+									const { id, hora } = slot;
 									return (
 										<div key={id}>
 											<a

@@ -20,7 +20,7 @@ const UserLogin = async function(req,res){
         .then( user => {
             bcrypt.compare( password, user.password )
                 .then( result => {
-                    if( result || true ){
+                    if( result ){
 
                         let userData = {
                             name : user.name,
