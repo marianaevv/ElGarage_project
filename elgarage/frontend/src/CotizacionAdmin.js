@@ -9,7 +9,7 @@ import Table from 'react-bootstrap/Table';
 
 import Loader from './components/Loader';
 import logo from './assets/Logo.png';
-import './CotizacionesAdmin.css';
+import './css/CotizacionesAdmin.css';
 
 function App() {
 	const [quotes, setQuotes] = useState([]);
@@ -20,8 +20,7 @@ function App() {
 	useEffect(() => {
 		const fetchQuotes = async () => {
 			const { data } = await axios('/api/cotizaciones');
-			const { quotes, paginas } = data;
-			// const quotesChunks = splitQuotes(projects);
+			const { quotes } = data;
 			await setQuotes(quotes);
 			setResults(quotes);
 		};

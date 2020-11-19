@@ -9,7 +9,7 @@ import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 
 import Loader from './components/Loader';
-import './CitasAdmin.css';
+import './css/CitasAdmin.css';
 
 function App() {
 	const [citas, setAppointments] = useState([]);
@@ -20,8 +20,7 @@ function App() {
 	useEffect(() => {
 		const fetchAppointments = async () => {
 			const { data } = await axios.get('/api/citas');
-			const { citas, paginas } = data;
-			// const quotesChunks = splitQuotes(projects);
+			const { citas } = data;
 			await setAppointments(citas);
 			setResults(citas);
 		};
@@ -41,14 +40,14 @@ function App() {
 		let url = '/api/citas/confirmar';
 
     let data = {
-        id : appointment.id,
-		nombre : appointment.nombre,
-		correo : appointment.correo,
-		telefono : appointment.telefono,
-		placas : appointment.placas,
-		fecha : appointment.fecha,
-		hora : appointment.hora,
-		descripcion : appointment.descripcion
+      id: appointment.id,
+			nombre: appointment.nombre,
+			correo: appointment.correo,
+			telefono: appointment.telefono,
+			placas: appointment.placas,
+			fecha: appointment.fecha,
+			hora: appointment.hora,
+			descripcion: appointment.descripcion
     }
 
     let settings = {
@@ -56,7 +55,7 @@ function App() {
         headers : {
             'Content-Type' : 'application/json'
         },
-        body : JSON.stringify( data )
+        body : JSON.stringify(data)
     }
 
     fetch( url, settings )
