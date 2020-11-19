@@ -1,27 +1,41 @@
-import axios from 'axios';
 import React, { useState, useEffect } from 'react';
-import Loader from './components/Loader';
+import axios from 'axios';
+import Fuse from 'fuse.js';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import './CotizacionesAdmin.css';
-import logo from './assets/Logo.png';
 import Container from 'react-bootstrap/esm/Container';
 import Table from 'react-bootstrap/Table';
+
+import Loader from './components/Loader';
+import logo from './assets/Logo.png';
+import './CotizacionesAdmin.css';
+
 function App() {
-	const [quotes, setQuotes] = useState(null);
+	const [quotes, setQuotes] = useState([]);
+	const [query, setQuery] = useState('');
+	const [results, setResults] = useState([]);
+	const fuse = new Fuse(quotes, { keys: ['nombre', 'correo', 'telefono', 'placas', 'marcaauto', 'añoauto', 'kilometraje', 'tamañomotor', 'servicio']});
 
 	useEffect(() => {
 		const fetchQuotes = async () => {
 			const { data } = await axios('/api/cotizaciones');
 			const { quotes, paginas } = data;
 			// const quotesChunks = splitQuotes(projects);
-			console.log(data);
-			setQuotes(quotes);
+			await setQuotes(quotes);
+			setResults(quotes);
 		};
 
 		fetchQuotes();
 	}, []);
+
+	useEffect(() => {
+		setResults(query ? fuse.search(query).map(x => x.item) : quotes);
+	}, [query]);
+
+	const onSearch = ({ currentTarget }) => {
+		setQuery(currentTarget.value);
+	}
 
 	return !quotes ? (
 		<Loader />
@@ -31,7 +45,7 @@ function App() {
 				<Row>
 					<Col md={4}>
 					<img src={logo} alt='Red car'className="logoCot"/>
-					
+
 					</Col>
 					<Col md={{ span: 4, offset: 4 }}>
 						<h1 className="display-4 font-weight-bold cotizaciones-dashboard">COTIZACIONES</h1>
@@ -45,7 +59,7 @@ function App() {
 									<h3 className="cotizaciones-dashboard">Buscar</h3>
 								</Col>
 								<Col md="5">
-									<Form.Control></Form.Control>
+									<Form.Control type='text' value={query} onChange={onSearch}></Form.Control>
 								</Col>
 							</Row>
 						</Form>
@@ -66,7 +80,7 @@ function App() {
 							<th className="thc">Servicios</th>
 							<th className="thc">Otro</th>
 						</tr>
-						{quotes.map((quote) => (
+						{results.map((quote) => (
 							<tr>
 								<th>{quote.nombre}</th>
 								<th>{quote.correo}</th>

@@ -15,7 +15,7 @@ function App() {
 	const [citas, setAppointments] = useState([]);
 	const [query, setQuery] = useState('');
 	const [results, setResults] = useState([]);
-	const fuse = new Fuse(citas, { keys: ['nombre', 'correo', 'telefono', 'placas', 'fecha', 'descripcion']})
+	const fuse = new Fuse(citas, { keys: ['nombre', 'correo', 'telefono', 'placas', 'fecha', 'descripcion']});
 
 	useEffect(() => {
 		const fetchAppointments = async () => {
@@ -31,7 +31,7 @@ function App() {
 
 	useEffect(() => {
 		setResults(query ? fuse.search(query).map(x => x.item) : citas);
-	}, [query])
+	}, [query]);
 
 	const onSearch = ({ currentTarget }) => {
 		setQuery(currentTarget.value);
