@@ -17,8 +17,7 @@ import PrivateRoute from './components/Util/PrivateRoute';
 
 import { isLoggedIn } from './components/Util/Auth';
 
-import "bootstrap/dist/css/bootstrap.min.css";
-import './App.css';
+
 
 function App() {
   return (
