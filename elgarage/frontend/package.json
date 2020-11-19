@@ -2,7 +2,7 @@
   "name": "elgarage",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:5000",
+  "proxy": "http://localhost:8000",
   "dependencies": {
     "@hookform/error-message": "0.0.4",
     "@progress/kendo-drawing": "1.9.0",
@@ -25,6 +25,7 @@
     "axios": "^0.20.0",
     "bootstrap": "^4.5.2",
     "classnames": "^2.2.6",
+    "fuse.js": "^6.4.3",
     "jwt-decode": "^3.0.0",
     "material-ui": "^0.20.2",
     "moment": "^2.29.1",

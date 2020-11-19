@@ -1,27 +1,42 @@
-import axios from 'axios';
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import Fuse from 'fuse.js';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Loader from './components/Loader';
-import Button from 'react-bootstrap/Button'
-import './CitasAdmin.css';
-
 import Container from 'react-bootstrap/esm/Container';
 import Table from 'react-bootstrap/Table';
+import Button from 'react-bootstrap/Button';
+
+import Loader from './components/Loader';
+import './CitasAdmin.css';
+
 function App() {
-	const [citas, setAppointments] = useState(null);
+	const [citas, setAppointments] = useState([]);
+	const [query, setQuery] = useState('');
+	const [results, setResults] = useState([]);
+	const fuse = new Fuse(citas, { keys: ['nombre', 'correo', 'telefono', 'placas', 'fecha', 'descripcion']})
 
 	useEffect(() => {
 		const fetchAppointments = async () => {
 			const { data } = await axios.get('/api/citas');
 			const { citas, paginas } = data;
 			// const quotesChunks = splitQuotes(projects);
-			setAppointments(citas);
+			await setAppointments(citas);
+			setResults(citas);
 		};
 
 		fetchAppointments();
 	}, []);
+
+	useEffect(() => {
+		setResults(query ? fuse.search(query).map(x => x.item) : citas);
+	}, [query])
+
+	const onSearch = ({ currentTarget }) => {
+		setQuery(currentTarget.value);
+	}
+
 	const confirmarCita = (appointment) =>{
 		let url = '/api/citas/confirmar';
 
@@ -82,7 +97,7 @@ function App() {
 									<h3 className="cita-dashboard">Buscar</h3>
 								</Col>
 								<Col md="5">
-									<Form.Control></Form.Control>
+									<Form.Control type='text' value={query} onChange={onSearch}></Form.Control>
 								</Col>
 							</Row>
 						</Form>
@@ -101,7 +116,7 @@ function App() {
 							<th className="th">Descripción de la falla o servicio</th>
 							<th className="th">Confirmado</th>
 						</tr>
-						{citas.map((appointment) => (
+						{results.map((appointment) => (
 							<tr>
 								<th>{appointment.nombre}</th>
 								<th>{appointment.correo}</th>
