@@ -7,7 +7,7 @@ import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
-import './Contacto.css';
+import './css/Contacto.css';
 
 const Contacto = () => {
   const { register, errors, handleSubmit } = useForm({
@@ -89,9 +89,8 @@ const Contacto = () => {
                   <ErrorMessage errors={errors} name="mensaje" render={({ message }) => <p className='text-danger'>{message}</p>}/>
                 </Form.Group>
                 <div className="btnContacto">
-                 <Button  variant="secondary" type="submit">Enviar</Button> 
+                 <Button  variant="secondary" type="submit">Enviar</Button>
                 </div>
-                
               </Form>
             </div>
           </Col>

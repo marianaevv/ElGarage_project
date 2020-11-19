@@ -6,8 +6,8 @@ app.listen(PORT,() =>
     new Promise( (resolve,reject) =>{
 
         const settings = {
-            useNewUrlParser: true, 
-            useUnifiedTopology: true, 
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
             useCreateIndex: true
         };
 

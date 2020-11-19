@@ -1,15 +1,13 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
-import './App.css';
-import './LoginAdmin.css';
+import './css/LoginAdmin.css';
 
-import {isLoggedIn} from './components/Util/Auth';
+import { isLoggedIn } from './components/Util/Auth';
 
 const Login = () => {
   if(isLoggedIn()){
@@ -19,48 +17,50 @@ const Login = () => {
     );
 }
 function userLoginFetch( email, password ){
-  //cambiar por link final del api de login en el deplyment 
-    let url = '/api/users/login';
+  //cambiar por link final del api de login en el deplyment
+  let url = '/api/users/login';
 
-    let data = {
-        email,
-        password
-    }
+  let data = {
+    email,
+    password
+  }
 
-    let settings = {
-        method : 'POST',
-        headers : {
-            'Content-Type' : 'application/json'
-        },
-        body : JSON.stringify( data )
-    }
+  let settings = {
+    method : 'POST',
+    headers : {
+      'Content-Type' : 'application/json'
+    },
+    body : JSON.stringify( data )
+  }
 
-    fetch( url, settings )
-        .then( response => {
-            if( response.ok ){
-                return response.json();
-            }
+  fetch( url, settings )
+    .then( response => {
+      if( response.ok ){
+        return response.json();
+      }
 
-            throw new Error( response.statusText );
-        })
-        .then( responseJSON => {
-            localStorage.setItem( 'token', responseJSON.token );
-            window.location.href = "/admin/citas";
-        })
-        .catch( err => {
-            alert("Something happend,Try again");
-            console.log(err);
-        });
-}
-const handleSubmit = (event) => {
+      throw new Error( response.statusText );
+    })
+    .then( responseJSON => {
+      localStorage.setItem( 'token', responseJSON.token );
+      window.location.href = "/admin/citas";
+    })
+    .catch( err => {
+      alert("Something happend,Try again");
+      console.log(err);
+    });
+  }
+
+  const handleSubmit = (event) => {
     const form = event.currentTarget;
     const email = form.querySelector('#formBasicEmail');
     const password = form.querySelector('#formBasicPassword');
     event.preventDefault();
     event.stopPropagation();
-    
+
     userLoginFetch(email.value,password.value);
   };
+
   return (
     <div className="login-page">
       <Container fluid>

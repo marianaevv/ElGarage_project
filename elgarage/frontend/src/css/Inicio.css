@@ -1,9 +1,12 @@
 
-.logoCot {
-  position: relative;
+.logo {
+  padding: 1em;
   width: 100%;
-  max-height: 150%;
-  object-fit: contain;
+  max-width: 600px;
+}
+
+.bg-almost-black {
+  background-color: #111;
 }
 
 .top-left {
@@ -15,32 +18,33 @@
   bottom: 0;
   right: 0;
 }
-.inicio-jumbo{
-  background-image: url("./assets/login-background.jpg");
+
+.inicio-jumbo {
+  background-image: url("../assets/login-background.jpg");
   margin-bottom: 0px !important;
 }
-.inicio-carousel h3,p{
+
+.inicio-carousel h3,p {
   color: black;
-  
+
 }
-.inicio-slide-link{
+
+.inicio-slide-link {
   height: 400px;
 }
-.map-responsive{
+
+.map-responsive {
   margin-top: 15px;
   overflow:hidden;
   padding-bottom:130%;
   position:relative;
   height:0;
 }
-.map-responsive iframe{
+
+.map-responsive iframe {
   left:0;
   bottom:0;
   height:50%;
   width:100%;
   position:absolute;
-}
-.responsive{
-  width: 100%;
-  max-width: 600px ;
 }

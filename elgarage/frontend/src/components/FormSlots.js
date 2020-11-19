@@ -1,32 +1,28 @@
-import React, { Component } from 'react';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import AppBar from 'material-ui/AppBar';
-import TextField from 'material-ui/TextField';
-import RaisedButton from 'material-ui/RaisedButton';
-import Loader from '../components/Loader';
-import { Form, Button } from 'react-bootstrap';
-import '../citas.css';
+import React from 'react';
+import { Form } from 'react-bootstrap';
 class FormSlots extends React.Component {
 	state = {
 		isLoading: true,
 		avSlots: [],
 		error: null,
 	};
+
 	continue = (e) => {
 		let val = document.getElementById('hora').value
-		if(val == ''){
-			alert("selecione una hora para su cita")
-		}
-		else{
+		if (val === ''){
+			alert("selecione una hora para su cita");
+		} else {
 			e.preventDefault();
 			//PROCESS FORM
 			this.props.nextStep();
 		}
 	};
+
 	back = (e) => {
 		e.preventDefault();
 		this.props.prevStep();
 	};
+
 	fetchSlots() {
 		// Where we're fetching data from
 		fetch(`/api/slotsPorDia/${this.props.values.fecha}`)
@@ -70,7 +66,7 @@ class FormSlots extends React.Component {
 							{error ? <p>{error.message}</p> : null}
 							{!isLoading ? (
 								avSlots.map((slot) => {
-									const { id, dia, hora } = slot;
+									const { id, hora } = slot;
 									return (
 										<div key={id}>
 											<a
