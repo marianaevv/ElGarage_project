@@ -4,7 +4,8 @@ import { ErrorMessage } from '@hookform/error-message';
 import { ToastContainer, toast } from 'react-toastify';
 import axios from 'axios';
 import URI from './URI';
-import './Cotizacion.css';
+
+import './css/Cotizacion.css';
 
 const Cotizacion = ({ history }) => {
 	const { register, errors, handleSubmit } = useForm({
@@ -34,7 +35,7 @@ const Cotizacion = ({ history }) => {
 					closeOnClick: true,
 					pauseOnHover: true,
 					draggable: true,
-				
+
 					});
 
 			})
@@ -160,4 +161,3 @@ const Cotizacion = ({ history }) => {
 };
 
 export default Cotizacion;
-
