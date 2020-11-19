@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from 'react-router-dom';
 import Nav from "react-bootstrap/Nav";
 import NavBar from "react-bootstrap/Navbar";
 import Button from 'react-bootstrap/Button';
@@ -16,16 +17,16 @@ const Navigation = () => (
           <img src={logo} alt='Red car' width="130" height="65" className="nav-mobil"/>
         </div>
         <Nav className="ml-auto align-items-center">
-          <Nav.Link className="NavItem" href="/">INICIO</Nav.Link>
-          <Nav.Link className="NavItem" href="/servicios">SERVICIOS</Nav.Link>
-          <Nav.Link className="NavItem" href="/citas">CITAS</Nav.Link>
-          <Nav.Link className="NavItem" href="/cotizacion">COTIZACIÓN</Nav.Link>
-          <Nav.Link className="NavItem" href="/contacto">CONTACTO</Nav.Link>
-          <Nav.Link className="NavItem" href="/nosotros">NOSOTROS</Nav.Link>
+          <Link className="NavItem nav-link" to="/">INICIO</Link>
+          <Link className="NavItem nav-link" to="/servicios">SERVICIOS</Link>
+          <Link className="NavItem nav-link" to="/citas">CITAS</Link>
+          <Link className="NavItem nav-link" to="/cotizacion">COTIZACIÓN</Link>
+          <Link className="NavItem nav-link" to="/contacto">CONTACTO</Link>
+          <Link className="NavItem nav-link" to="/nosotros">NOSOTROS</Link>
           {isLoggedIn() && (
             <>
-              <Nav.Link className="NavItem" href="/admin/citas">VER CITAS</Nav.Link>
-              <Nav.Link className="NavItem" href="/admin/cotizaciones">VER COTIZACIONES</Nav.Link>
+              <Link className="NavItem nav-link" to="/admin/citas">VER CITAS</Link>
+              <Link className="NavItem nav-link" to="/admin/cotizaciones">VER COTIZACIONES</Link>
               <span>
                 <Button variant="danger" style={{margin: '10px'}} onClick={LogOut}>Cerrar Sesion</Button>
               </span>
