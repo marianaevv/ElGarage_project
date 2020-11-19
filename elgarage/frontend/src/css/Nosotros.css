@@ -1,8 +1,8 @@
 .jumbo{
-    background-image: linear-gradient(#fff8, transparent), url("./assets/about.jpg");
-    
-   
-    
+    background-image: linear-gradient(#fff8, transparent), url("../assets/about.jpg");
+
+
+
 }
 .jumbo-text{
 font-weight: bold;
@@ -15,7 +15,7 @@ font-weight: bold;
 }
 .nosotros-img{
     position: relative;
-    
+
 }
 .logoNosotros{
     margin-bottom:40px;
