@@ -1,5 +1,5 @@
 const URI = {
-    base: "http://localhost:8000/",
+    base: "https://elgarage2.herokuapp.com/",
     routes: {
         postQuote: "api/cotizacion",
         postApppointment: "api/citas",
